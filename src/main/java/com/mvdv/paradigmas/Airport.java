@@ -1,0 +1,28 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.mvdv.paradigmas;
+
+/**
+ *
+ * @author ponytojas
+ */
+public class Airport {
+    private SuitcaseConveyor conveyor = new SuitcaseConveyor();
+    
+    public static void main(String[] args) {
+        // Generar los hilos, un consumidor y un productor
+        // Primer productor --> Pasajeros
+        // Primer consumidor --> Cinta de maletas
+        // La cinta a su vez será productor de los empleados
+        // Los empleados serán consumidores
+        // Necesitamos cerrojo para la cinta de maletas
+        // La cinta de maletas tendrá monitor ya que funcionará como un buffer
+        /* 
+            Los empleados (Consumidores) esperarán (await) hasta que reciban la 
+            señal de que hay maletas 
+        */
+    }
+}
