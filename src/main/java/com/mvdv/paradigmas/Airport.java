@@ -14,28 +14,39 @@ import java.util.ArrayList;
  */
 public class Airport {
     
-    public static void main(String[] args) throws IOException {
-        // Generar los hilos, un consumidor y un productor
-        // Primer productor --> Pasajeros
-        // Primer consumidor --> Cinta de maletas
-        // La cinta a su vez será productor de los empleados
-        // Los empleados serán consumidores
-        // Necesitamos cerrojo para la cinta de maletas
-        // La cinta de maletas tendrá monitor ya que funcionará como un buffer
-        /* 
-            Los empleados (Consumidores) esperarán (await) hasta que reciban la 
-            señal de que hay maletas 
-        */
+    public static void main(String[] args) throws IOException, InterruptedException {
+        ArrayList <Passenger> passengers = new ArrayList<>();
+        ArrayList <Employee> employees = new ArrayList<>();
         int passengerID = 0;
         Log log = new Log();
         SuitcaseConveyor conveyor = new SuitcaseConveyor(log);
+        Airplane airplane = new Airplane(log);
         
-        ArrayList <Passenger> passengers = new ArrayList<>();
+        
         while(passengerID < 40){
-            passengers.add(new Passenger(++passengerID, log));
+            Passenger passenger = new Passenger(++passengerID, log, conveyor);
+            passenger.start();
+            passengers.add(passenger);
             log.addPassengerEvent("Created passenger number " + passengerID);
         }
         
-        log.dumpLog();
+        Employee employee = new Employee(1, log, conveyor, airplane);
+        Employee employee2 = new Employee(2, log, conveyor, airplane);
+        
+        employee.start();
+        employees.add(employee);
+        
+        employee2.start();
+        employees.add(employee2);
+        
+        for (Thread thread: passengers)
+            thread.join();
+        
+        for (Thread thread: employees)
+            thread.join();
+        
+
+       log.dumpLog();
+        
     }
 }
