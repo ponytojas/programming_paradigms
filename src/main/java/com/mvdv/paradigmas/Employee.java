@@ -5,6 +5,10 @@
  */
 package com.mvdv.paradigmas;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
 /**
  *
  * @author ponytojas
@@ -14,11 +18,17 @@ public class Employee extends Thread{
     private final int id;
     private Suitcase suitcase;
     private Log log;
-    private SuitcaseConveyor conveyor;
+    private SuitcaseConveyor suitcaseConveyor;
+    private Airplane airplane;
+
     
-    public Employee(int id, Log log){
+    public Employee(int id, Log log, SuitcaseConveyor suitcaseConveyor,
+                        Airplane airplane){
         this.id = id;
         this.log = log;
+        this.suitcase = null;
+        this.suitcaseConveyor = suitcaseConveyor;
+        this.airplane = airplane;
     }
     
     public void getSuitcase(Suitcase suitcase){
@@ -31,5 +41,23 @@ public class Employee extends Thread{
    
     public void removeSuitcase(){
         this.suitcase = null;
+    }
+    
+    @Override
+    public void run(){
+        while(this.suitcase == null){
+            
+            try {
+                this.suitcase = this.suitcaseConveyor.getSuitcase();
+                
+                                this.log.addConveyorEvent("Employee is moving: " + 
+                                            this.suitcase.getSuitcaseID());
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Employee.class.getName()).
+                        log(Level.SEVERE, null, ex);
+            }
+            
+            
+        }
     }
 }
