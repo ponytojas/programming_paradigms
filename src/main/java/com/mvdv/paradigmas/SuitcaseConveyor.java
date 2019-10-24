@@ -20,8 +20,6 @@ public class SuitcaseConveyor {
         this.conveySuitcase.add(suitcase);
     }
     
-    public Suitcase getSuitcase(){
-        return this.conveySuitcase.remove(0);
     }
     
     public boolean isConveyorFull(){
