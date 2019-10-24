@@ -16,7 +16,11 @@ public class Suitcase {
     public Suitcase(int passengerID, int suitcaseID) {
         this.suitcaseID = "Pasajero" + String.valueOf(passengerID) + "-M" + String.valueOf(suitcaseID);
     }
+
+    public String getSuitcaseID() {
+        return suitcaseID;
+    }
     
- 
+    
     
 }
