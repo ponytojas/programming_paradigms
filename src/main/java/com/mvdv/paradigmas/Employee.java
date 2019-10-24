@@ -9,13 +9,16 @@ package com.mvdv.paradigmas;
  *
  * @author ponytojas
  */
-public class Employee {
+public class Employee extends Thread{
     
-    public final int id;
-    public Suitcase suitcase;
+    private final int id;
+    private Suitcase suitcase;
+    private Log log;
+    private SuitcaseConveyor conveyor;
     
-    public Employee(int id){
+    public Employee(int id, Log log){
         this.id = id;
+        this.log = log;
     }
     
     public void getSuitcase(Suitcase suitcase){

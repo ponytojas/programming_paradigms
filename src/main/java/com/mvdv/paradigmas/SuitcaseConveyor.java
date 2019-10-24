@@ -9,9 +9,11 @@ import java.util.ArrayList;
 
 public class SuitcaseConveyor {
     private ArrayList <Suitcase> conveySuitcase;
+    private Log log;
     
-    public SuitcaseConveyor(){
+    public SuitcaseConveyor(Log log){
         this.conveySuitcase = new ArrayList <>();
+        this.log = log;
     }
 
     public void depositSuitcase(Suitcase suitcase){

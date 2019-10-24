@@ -12,11 +12,13 @@ import java.util.ArrayList;
  * @author ponytojas
  */
 public class Airplane {
+    private Log log;
     
     private ArrayList <Suitcase> airplaneContent;
     
-    public Airplane(){
+    public Airplane(Log log){
         this.airplaneContent = new ArrayList<>();
+        this.log = log;
     }
     
     public void setSuitcase(Suitcase newSuitcase){
