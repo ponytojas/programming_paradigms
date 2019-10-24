@@ -25,7 +25,6 @@ public class SuitcaseConveyor {
     }
     
     public boolean isConveyorFull(){
-        return (this.conveySuitcase.size() == 7);
     }
     
     public boolean isConveyorEmpty(){
