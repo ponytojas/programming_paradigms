@@ -20,35 +20,40 @@ public class Log {
     private String passengersLog = "";
     private String employeeLog = "";
     private String conveyorLog = "";
-    private Date date= new Date();
+    
 
     public Log() {}
    
     public void addAirplaneEvent(String newStuffToAppend){
+        Date date= new Date();
         Timestamp ts = new Timestamp(date.getTime());
         System.out.println("I/ -- " + ts + " -- " + newStuffToAppend);
         this.airplaneLog += ts + " -- " + newStuffToAppend + "\n";
     }
     
     public void addPassengerEvent(String newStuffToAppend){
+        Date date= new Date();
         Timestamp ts = new Timestamp(date.getTime());
         System.out.println("I/ -- " + ts + " -- " + newStuffToAppend);
         this.passengersLog += ts + " -- " + newStuffToAppend + "\n";
     }
         
     public void addEmployeeEvent(String newStuffToAppend){
+        Date date= new Date();
         Timestamp ts = new Timestamp(date.getTime());
         System.out.println("I/ -- " + ts + " -- " + newStuffToAppend);
         this.employeeLog += ts + " -- " + newStuffToAppend + "\n";
     }
     
     public void addConveyorEvent(String newStuffToAppend){
+        Date date= new Date();
         Timestamp ts = new Timestamp(date.getTime());
         System.out.println("I/ -- " + ts + " -- " + newStuffToAppend);
         this.conveyorLog += ts + " -- " + newStuffToAppend + "\n";
     }
     
     public void dumpLog() throws IOException{
+        Date date= new Date();
         String finalStringLog = "";
         
         finalStringLog += "/****Airplane Events****/\n" + this.airplaneLog +"\n";
