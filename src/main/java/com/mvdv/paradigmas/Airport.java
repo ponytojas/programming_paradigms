@@ -5,6 +5,8 @@
  */
 package com.mvdv.paradigmas;
 
+import java.io.IOException;
+
 /**
  *
  * @author ponytojas
@@ -12,7 +14,7 @@ package com.mvdv.paradigmas;
 public class Airport {
     private SuitcaseConveyor conveyor = new SuitcaseConveyor();
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // Generar los hilos, un consumidor y un productor
         // Primer productor --> Pasajeros
         // Primer consumidor --> Cinta de maletas
@@ -24,5 +26,8 @@ public class Airport {
             Los empleados (Consumidores) esperarán (await) hasta que reciban la 
             señal de que hay maletas 
         */
+
+        Log log = new Log();
+        log.dumpLog();
     }
 }
