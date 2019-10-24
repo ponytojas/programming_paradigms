@@ -7,6 +7,8 @@ package com.mvdv.paradigmas;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  *
@@ -18,23 +20,32 @@ public class Log {
     private String passengersLog = "";
     private String employeeLog = "";
     private String conveyorLog = "";
+    private Date date= new Date();
 
     public Log() {}
    
     public void addAirplaneEvent(String newStuffToAppend){
-        this.airplaneLog += newStuffToAppend + "\n";
+        Timestamp ts = new Timestamp(date.getTime());
+        System.out.println("I/ -- " + ts + " -- " + newStuffToAppend);
+        this.airplaneLog += ts + " -- " + newStuffToAppend + "\n";
     }
     
     public void addPassengerEvent(String newStuffToAppend){
-        this.passengersLog += newStuffToAppend + "\n";
+        Timestamp ts = new Timestamp(date.getTime());
+        System.out.println("I/ -- " + ts + " -- " + newStuffToAppend);
+        this.passengersLog += ts + " -- " + newStuffToAppend + "\n";
     }
         
     public void addEmployeeEvent(String newStuffToAppend){
-        this.employeeLog += newStuffToAppend + "\n";
+        Timestamp ts = new Timestamp(date.getTime());
+        System.out.println("I/ -- " + ts + " -- " + newStuffToAppend);
+        this.employeeLog += ts + " -- " + newStuffToAppend + "\n";
     }
     
     public void addConveyorEvent(String newStuffToAppend){
-        this.conveyorLog += newStuffToAppend + "\n";
+        Timestamp ts = new Timestamp(date.getTime());
+        System.out.println("I/ -- " + ts + " -- " + newStuffToAppend);
+        this.conveyorLog += ts + " -- " + newStuffToAppend + "\n";
     }
     
     public void dumpLog() throws IOException{
@@ -45,8 +56,13 @@ public class Log {
         finalStringLog += "/****Employee Events****/\n" + this.employeeLog +"\n";
         finalStringLog += "/****Conveyor Events****/\n" + this.conveyorLog +"\n";
         
-        try (PrintWriter out = new PrintWriter("log.txt")) {
+        
+        Timestamp ts = new Timestamp(date.getTime());
+        
+        try (PrintWriter out = new PrintWriter("log.log")) {
             out.println(finalStringLog);
+                    System.out.println(ts + " -- Dumping Log into: " + 
+                System.getProperty("user.dir"));
         }
         
     }
