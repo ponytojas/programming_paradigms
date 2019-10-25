@@ -31,10 +31,10 @@ public class SuitcaseConveyor {
             }
             if(!this.isConveyorFull()){
                 this.conveySuitcase.add(suitcase);
+                empty.signal();
                 
-                                this.log.addConveyorEvent("Suitcase: " + 
-                                            suitcase.getSuitcaseID() + 
-                                            " has been deposited");
+                this.log.addConveyorEvent("Suitcase: " + suitcase.getSuitcaseID()
+                                            + " has been deposited");
             }
         }finally{
             this.lock.unlock();
@@ -51,6 +51,7 @@ public class SuitcaseConveyor {
             }
             if(!this.isConveyorFull()){
                 toReturnSuitcase =  this.conveySuitcase.remove(0);
+                full.signal();
                 
                 this.log.addConveyorEvent("Suitcase: " + 
                                             toReturnSuitcase.getSuitcaseID() + 
