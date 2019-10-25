@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author ponytojas
+ * @author Marcos Vicente y Daniel Villalobos
  */
 public class Airplane {
     private Log log;
