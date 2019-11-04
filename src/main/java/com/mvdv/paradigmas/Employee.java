@@ -22,20 +22,18 @@ public class Employee extends Thread {
     private Boolean stillPassengers = true;
     private int amount = 0;
 
-    
-    public Employee(int id, Log log, SuitcaseConveyor suitcaseConveyor,
-                        Airplane airplane){
+    public Employee(int id, Log log, SuitcaseConveyor suitcaseConveyor, Airplane airplane) {
         this.id = id;
         this.log = log;
         this.suitcase = null;
         this.suitcaseConveyor = suitcaseConveyor;
         this.airplane = airplane;
     }
-    
-    public void getSuitcase(Suitcase suitcase){
+
+    public void getSuitcase(Suitcase suitcase) {
         this.suitcase = suitcase;
     }
-    
+
     public Suitcase getSuitcase(){
         return this.suitcase;
     }
