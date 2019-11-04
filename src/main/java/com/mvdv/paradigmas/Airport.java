@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author ponytojas
+ * @author Marcos Vicente && Daniel Villalobos
  */
 public class Airport {
 
