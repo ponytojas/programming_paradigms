@@ -17,7 +17,6 @@ public class Airport {
     @SuppressWarnings("empty-statement")
     public static void main(String[] args) throws IOException, InterruptedException {
 
-        ArrayList <Employee> employees = new ArrayList<>();
         int passengerID = 0;
         Log log = new Log();
         SuitcaseConveyor conveyor = new SuitcaseConveyor(log);
@@ -27,7 +26,6 @@ public class Airport {
         while(passengerID < 40){
             Passenger passenger = new Passenger(++passengerID, log, conveyor);
             passenger.start();
-            passengers.add(passenger);
             log.addPassengerEvent("Created passenger number " + passengerID);
         }
         
