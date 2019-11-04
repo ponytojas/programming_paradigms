@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 
 /**
  *
- * @author ponytojas
+* @author Marcos Vicente && Daniel Villalobos
  */
 public class Log {
     
