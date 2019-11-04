@@ -1,0 +1,33 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+    
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Airport",
+            "request": "launch",
+            "mainClass": "com.mvdv.paradigmas.Airport",
+            "projectName": "Airport"
+        },
+        {
+            "name": "Debug Java",
+            "type": "java",
+            "request": "launch",
+            "externalConsole": true,
+            "stopOnEntry": true,
+            "preLaunchTask": "build",
+            "jdkPath": "${env:JAVA_HOME}/bin",
+            "cwd": "${workspaceRoot}",
+            "startupClass": "${workspaceRoot}${file}",
+            "sourcePath": [
+                "${workspaceRoot}"
+            ],
+            "classpath": [
+                "${workspaceRoot}"
+            ],
+            "options": [],
+            "args": []
+        }
+    ],
+    "compounds": []
+}
