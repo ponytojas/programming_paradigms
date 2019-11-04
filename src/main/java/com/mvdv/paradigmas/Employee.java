@@ -19,6 +19,8 @@ public class Employee extends Thread {
     private Log log;
     private SuitcaseConveyor suitcaseConveyor;
     private Airplane airplane;
+    private Boolean stillPassengers = true;
+    private int amount = 0;
 
     
     public Employee(int id, Log log, SuitcaseConveyor suitcaseConveyor,
