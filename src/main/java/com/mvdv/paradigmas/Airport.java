@@ -13,9 +13,10 @@ import java.util.ArrayList;
  * @author ponytojas
  */
 public class Airport {
-    
+
+    @SuppressWarnings("empty-statement")
     public static void main(String[] args) throws IOException, InterruptedException {
-        ArrayList <Passenger> passengers = new ArrayList<>();
+
         ArrayList <Employee> employees = new ArrayList<>();
         int passengerID = 0;
         Log log = new Log();
