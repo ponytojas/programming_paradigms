@@ -35,8 +35,8 @@ public class Airport {
         employee.start();
         employees.add(employee);
         
-        employee2.start();
-        employees.add(employee2);
+        while (conveyor.getSuitcaseAmount() > 0) {
+            Thread.sleep(100);
         
         for (Thread thread: passengers)
             thread.join();
