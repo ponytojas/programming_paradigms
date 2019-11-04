@@ -34,11 +34,11 @@ public class Employee extends Thread {
         this.suitcase = suitcase;
     }
 
-    public Suitcase getSuitcase(){
+    public Suitcase getSuitcase() {
         return this.suitcase;
     }
-   
-    public void removeSuitcase(){
+
+    public void removeSuitcase() {
         this.suitcase = null;
     }
     
@@ -55,8 +55,7 @@ public class Employee extends Thread {
                 Logger.getLogger(Employee.class.getName()).
                         log(Level.SEVERE, null, ex);
             }
-            
-            
         }
     }
+
 }
