@@ -67,8 +67,10 @@ public class SuitcaseConveyor {
         return (this.conveySuitcase.size() == 8);
     }
     
-    public boolean isConveyorEmpty(){
-        return this.conveySuitcase.isEmpty();
+    public boolean isConveyorEmpty() {
+        return this.conveySuitcase.size() == 0;
     }
-    
-}
+
+    public int getAllSize() {
+        return this.conveySuitcase.size();
+    }
