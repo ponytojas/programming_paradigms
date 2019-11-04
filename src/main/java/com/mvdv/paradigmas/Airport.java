@@ -18,35 +18,36 @@ public class Airport {
     public static void main(String[] args) throws IOException, InterruptedException {
 
         int passengerID = 0;
+        int employeeID = 0;
+        ArrayList<Employee> employees = new ArrayList<>();
         Log log = new Log();
         SuitcaseConveyor conveyor = new SuitcaseConveyor(log);
         Airplane airplane = new Airplane(log);
-        
-        
-        while(passengerID < 40){
+
+        while (passengerID < 40) {
             Passenger passenger = new Passenger(++passengerID, log, conveyor);
             passenger.start();
             log.addPassengerEvent("Created passenger number " + passengerID);
         }
-        
+
         while (employeeID < 2) {
             Employee employee = new Employee(++employeeID, log, conveyor, airplane);
             employees.add(employee);
             employee.start();
             log.addEmployeeEvent("Created employee number " + passengerID);
         }
-        
+
         while (conveyor.getSuitcaseAmount() > 0) {
             Thread.sleep(100);
-        
-        for (Thread thread: passengers)
-            thread.join();
-        
-        for (Thread thread: employees)
-            thread.join();
-        
+        }
 
-       log.dumpLog();
-        
+        for (Employee e : employees)
+            e.setNoPassengers();
+
+        for (Thread thread : employees)
+            thread.join();
+
+        log.dumpLog();
+
     }
 }
