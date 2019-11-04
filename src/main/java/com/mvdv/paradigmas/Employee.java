@@ -8,13 +8,12 @@ package com.mvdv.paradigmas;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 /**
  *
- * @author ponytojas
+ * @author Marcos Vicente && Daniel Villalobos
  */
-public class Employee extends Thread{
-    
+public class Employee extends Thread {
+
     private final int id;
     private Suitcase suitcase;
     private Log log;
