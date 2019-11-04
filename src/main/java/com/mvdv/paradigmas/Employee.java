@@ -47,17 +47,46 @@ public class Employee extends Thread {
     }
 
     @Override
-    public void run(){
-        while(this.suitcase == null){
-            
+    public void run() {
+        while (this.stillPassengers) {
+            if (!this.suitcaseConveyor.isConveyorEmpty()) {
+                try {
+                    this.log.addEmployeeEvent("Employer " + this.id + " is trying to get suitcase");
+                    Suitcase suitcaseToGet = this.suitcaseConveyor.getSuitcase();
+                    if (suitcaseToGet != null) {
+                        this.log.addEmployeeEvent("Employer " + this.id + " has gotten the suitcase " + suitcaseToGet.getSuitcaseID());       
+                        this.log.addEmployeeEvent("Employer " + this.id + " has gotten " + this.amount + " suitcases");       
+                        try {
+                            Thread.sleep((int) (Math.random() * ((700 - 400) + 1)) + 400);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(Passenger.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        this.log.addEmployeeEvent("Employer " + this.id + " lefting suitcase on the airplane");
+                        this.airplane.setSuitcase(suitcaseToGet);
+                        this.log.addEmployeeEvent("Employer " + this.id + " left suitcase on the airplane");
+                        try {
+                            Thread.sleep((int) (Math.random() * ((700 - 400) + 1)) + 400);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(Passenger.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        this.log.addEmployeeEvent("Employer " + this.id + " returned to get another suitcase");
+                    } else {
+                        try {
+                            Thread.sleep((int) (Math.random() * ((100 - 50) + 1)) + 50);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(Passenger.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Passenger.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+            this.log.addEmployeeEvent("Employer " + this.id + " doesn't find any suitcase to get");
             try {
-                this.suitcase = this.suitcaseConveyor.getSuitcase();
-                
-                                this.log.addConveyorEvent("Employee is moving: " + 
-                                            this.suitcase.getSuitcaseID());
+                Thread.sleep((int) (Math.random() * ((70 - 40) + 1)) + 40);
             } catch (InterruptedException ex) {
-                Logger.getLogger(Employee.class.getName()).
-                        log(Level.SEVERE, null, ex);
+                Logger.getLogger(Passenger.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
