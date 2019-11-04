@@ -29,11 +29,12 @@ public class Airport {
             log.addPassengerEvent("Created passenger number " + passengerID);
         }
         
-        Employee employee = new Employee(1, log, conveyor, airplane);
-        Employee employee2 = new Employee(2, log, conveyor, airplane);
-        
-        employee.start();
-        employees.add(employee);
+        while (employeeID < 2) {
+            Employee employee = new Employee(++employeeID, log, conveyor, airplane);
+            employees.add(employee);
+            employee.start();
+            log.addEmployeeEvent("Created employee number " + passengerID);
+        }
         
         while (conveyor.getSuitcaseAmount() > 0) {
             Thread.sleep(100);
