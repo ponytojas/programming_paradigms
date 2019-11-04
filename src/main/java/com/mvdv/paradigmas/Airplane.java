@@ -6,6 +6,8 @@
 package com.mvdv.paradigmas;
 
 import java.util.ArrayList;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  *
@@ -13,6 +15,8 @@ import java.util.ArrayList;
  */
 public class Airplane {
     private Log log;
+    
+    private Lock lock = new ReentrantLock();
     
     private ArrayList <Suitcase> airplaneContent;
     
@@ -22,7 +26,17 @@ public class Airplane {
     }
     
     public void setSuitcase(Suitcase newSuitcase){
-        this.airplaneContent.add(newSuitcase);
+        
+         try{
+            this.lock.lock();
+            this.airplaneContent.add(newSuitcase);
+            this.log.addAirplaneEvent("Suitcase: " + newSuitcase.getSuitcaseID()
+                                        + " has been stored in the airplane");
+            }
+        finally{
+            this.lock.unlock();
+        }
+         
     }
-    
+
 }
