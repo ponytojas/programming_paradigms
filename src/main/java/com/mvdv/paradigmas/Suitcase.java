@@ -10,7 +10,7 @@ package com.mvdv.paradigmas;
  * @author ponytojas
  */
 public class Suitcase {
-    
+
     private final String suitcaseID;
 
     public Suitcase(int passengerID, int suitcaseID) {
@@ -20,7 +20,5 @@ public class Suitcase {
     public String getSuitcaseID() {
         return suitcaseID;
     }
-    
-    
-    
+
 }
