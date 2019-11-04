@@ -41,7 +41,11 @@ public class Employee extends Thread {
     public void removeSuitcase() {
         this.suitcase = null;
     }
-    
+
+    public void setNoPassengers() {
+        this.stillPassengers = false;
+    }
+
     @Override
     public void run(){
         while(this.suitcase == null){
