@@ -14,29 +14,22 @@ import java.util.concurrent.locks.ReentrantLock;
  * @author Marcos Vicente && Daniel Villalobos
  */
 public class Airplane {
-    private Log log;
-    
-    private Lock lock = new ReentrantLock();
-    
-    private ArrayList <Suitcase> airplaneContent;
-    
-    public Airplane(Log log){
+    private Lock airplaneLock = new ReentrantLock();
+
+    private ArrayList<Suitcase> airplaneContent;
+
+    public Airplane() {
         this.airplaneContent = new ArrayList<>();
-        this.log = log;
     }
-    
-    public void setSuitcase(Suitcase newSuitcase){
-        
-         try{
-            this.lock.lock();
+
+    public void setSuitcase(Suitcase newSuitcase) {
+
+        try {
+            this.airplaneLock.lock();
             this.airplaneContent.add(newSuitcase);
-            this.log.addAirplaneEvent("Suitcase: " + newSuitcase.getSuitcaseID()
-                                        + " has been stored in the airplane");
-            }
-        finally{
-            this.lock.unlock();
+        } finally {
+            this.airplaneLock.unlock();
         }
-         
     }
 
 }

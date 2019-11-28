@@ -12,15 +12,14 @@ public class Passenger extends Thread {
 
     private final String passengerID;
     private ArrayList<Suitcase> passengerSuitcases;
-    private Log log;
+
     private SuitcaseConveyor suitcaseConveyor;
 
-    public Passenger(int ID, Log log, SuitcaseConveyor suitcaseConveyor) {
+    public Passenger(int ID, SuitcaseConveyor suitcaseConveyor) {
         this.passengerID = "Pasajero" + String.valueOf(ID);
         this.passengerSuitcases = new ArrayList<>();
         this.passengerSuitcases.add(new Suitcase(ID, 1));
         this.passengerSuitcases.add(new Suitcase(ID, 2));
-        this.log = log;
         this.suitcaseConveyor = suitcaseConveyor;
     }
 
@@ -42,17 +41,10 @@ public class Passenger extends Thread {
             }
 
             try {
-                Thread.sleep((int) (Math.random() * ((1000 - 500) + 1)) + 500);
+                Thread.sleep((int) (Math.random() * ((100 - 50) + 1)) + 50);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Passenger.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            if (this.passengerSuitcases.isEmpty())
-                this.log.addPassengerEvent("No more suitcases for passenger " + this.passengerID);
-            else
-                this.log.addPassengerEvent("Still one suitcase for passenger " + this.passengerID);
         }
-
-        System.out.println("See you later Aligator: " + this.passengerID);
     }
 }
