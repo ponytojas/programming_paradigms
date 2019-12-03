@@ -24,11 +24,13 @@ public class Airport {
         
         System.out.println("Pintando cosas para ver que funciona");
 
-        for (Employee employee : employees)
+        employees.forEach((employee) -> {
             employee.start();
+        });
 
-        for (Passenger passenger : passengers)
+        passengers.forEach((passenger) -> {
             passenger.start();
+        });
 
         for (Passenger passenger : passengers)
             passenger.join();
