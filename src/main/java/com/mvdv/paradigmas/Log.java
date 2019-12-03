@@ -101,7 +101,7 @@ public class Log {
                     break;
                 }
                 System.out.println(inputText);
-                writer.append(inputText);
+                writer.append(inputText + "\n");
                 writer.close();
 
             } catch (Exception e) {

@@ -12,15 +12,16 @@ public class Passenger extends Thread {
 
     private final String passengerID;
     private ArrayList<Suitcase> passengerSuitcases;
-
+    private Log log;
     private SuitcaseConveyor suitcaseConveyor;
 
-    public Passenger(int ID, SuitcaseConveyor suitcaseConveyor) {
+    public Passenger(int ID, SuitcaseConveyor suitcaseConveyor, Log log) {
         this.passengerID = "Pasajero" + String.valueOf(ID);
         this.passengerSuitcases = new ArrayList<>();
         this.passengerSuitcases.add(new Suitcase(ID, 1));
         this.passengerSuitcases.add(new Suitcase(ID, 2));
         this.suitcaseConveyor = suitcaseConveyor;
+        this.log = log;
     }
 
     public String getPassengerID() {
@@ -36,14 +37,19 @@ public class Passenger extends Thread {
         while (!this.passengerSuitcases.isEmpty()) {
             try {
                 this.suitcaseConveyor.depositSuitcase(this.passengerSuitcases.remove(0));
+                String textForLog = "The passenger " + this.passengerID + " has deposit the suitcase";
+                System.out.println(textForLog);
+                this.log.writeToTheLog(textForLog, "Info");
             } catch (InterruptedException ex) {
-                Logger.getLogger(Passenger.class.getName()).log(Level.SEVERE, null, ex);
+                String textForError = "There was an error: \n" + ex;
+                this.log.writeToTheLog(textForError, "Error");
             }
 
             try {
                 Thread.sleep((int) (Math.random() * ((100 - 50) + 1)) + 50);
             } catch (InterruptedException ex) {
-                Logger.getLogger(Passenger.class.getName()).log(Level.SEVERE, null, ex);
+                String textForError = "There was an error: \n" + ex;
+                this.log.writeToTheLog(textForError, "Error");
             }
         }
     }

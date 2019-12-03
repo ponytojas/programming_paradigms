@@ -19,8 +19,8 @@ public class Airport {
         log.writeToTheLog("Es una prueba", "Info");
 
 
-        ArrayList<Employee> employees = creator.createEmployees(2, conveyor, airplane);
-        ArrayList<Passenger> passengers = creator.createPassenger(40, conveyor);
+        ArrayList<Employee> employees = creator.createEmployees(2, conveyor, airplane, log);
+        ArrayList<Passenger> passengers = creator.createPassenger(40, conveyor, log);
         
         System.out.println("Pintando cosas para ver que funciona");
 
