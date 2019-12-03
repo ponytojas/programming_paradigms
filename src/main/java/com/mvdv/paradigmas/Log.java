@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.Timestamp;
-import java.util.Date;
+import java.util.concurrent.Semaphore;
 
 /**
  *
@@ -23,9 +23,11 @@ import java.util.Date;
 public class Log {
     private final String currentDirectory = System.getProperty("user.dir");
     private File log = new File(currentDirectory + "/airport.log");
-    BufferedWriter writer = new BufferedWriter(new FileWriter(currentDirectory + "/airport.log", true));
+    Semaphore semaphore;
 
     public Log() throws IOException {
+        this.semaphore = new Semaphore(1, true);
+
         if (!log.exists())
             this.createFile(false);
         else {
@@ -81,25 +83,34 @@ public class Log {
     }
 
     public void writeToTheLog(String inputText, String inputType) {
-        Date date = new Date();
-        Timestamp ts = new Timestamp(date.getTime());
-        switch (inputType) {
-        case "Info":
-            inputText = ts + "  I/ " + inputText;
-            break;
-        case "Error":
-            inputText = ts + "  E/ " + inputText;
-            break;
-        default:
-            inputText = ts + "  W/ " + inputText;
-            break;
-        }
-        System.out.println(inputText);
         try {
-            this.writer.append(inputText);
+            this.semaphore.acquire();
+            try {
+                BufferedWriter writer = new BufferedWriter(new FileWriter(currentDirectory + "/airport.log", true));
+                Timestamp ts = new Timestamp(System.currentTimeMillis());
+
+                switch (inputType) {
+                case "Info":
+                    inputText = ts + "  I/ " + inputText;
+                    break;
+                case "Error":
+                    inputText = ts + "  E/ " + inputText;
+                    break;
+                default:
+                    inputText = ts + "  W/ " + inputText;
+                    break;
+                }
+                System.out.println(inputText);
+                writer.append(inputText);
+                writer.close();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            this.semaphore.release();
         }
-
     }
 }
