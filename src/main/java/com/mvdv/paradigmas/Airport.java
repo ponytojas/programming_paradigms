@@ -15,10 +15,13 @@ public class Airport {
         Creator creator = new Creator();
         Airplane airplane = new Airplane();
         SuitcaseConveyor conveyor = new SuitcaseConveyor();
-        Log log = new Log();
+        // Log log = new Log();
+        // Deja comentada esa línea de momento
 
         ArrayList<Employee> employees = creator.createEmployees(2, conveyor, airplane);
         ArrayList<Passenger> passengers = creator.createPassenger(40, conveyor);
+        
+        System.out.println("Pintando cosas para ver que funciona");
 
         for (Employee employee : employees)
             employee.start();
@@ -28,6 +31,8 @@ public class Airport {
 
         for (Passenger passenger : passengers)
             passenger.join();
+        
+        System.out.println("Oh my god ha terminado");
 
         for (Employee employee : employees)
             employee.join();
