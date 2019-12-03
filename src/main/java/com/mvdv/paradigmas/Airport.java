@@ -15,8 +15,9 @@ public class Airport {
         Creator creator = new Creator();
         Airplane airplane = new Airplane();
         SuitcaseConveyor conveyor = new SuitcaseConveyor();
-        // Log log = new Log();
-        // Deja comentada esa línea de momento
+        Log log = new Log();
+        log.writeToTheLog("Es una prueba", "Info");
+
 
         ArrayList<Employee> employees = creator.createEmployees(2, conveyor, airplane);
         ArrayList<Passenger> passengers = creator.createPassenger(40, conveyor);
