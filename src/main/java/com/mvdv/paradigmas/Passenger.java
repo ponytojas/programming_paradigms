@@ -38,6 +38,7 @@ public class Passenger extends Thread {
             try {
                 this.suitcaseConveyor.depositSuitcase(this.passengerSuitcases.remove(0));
                 String textForLog = "The passenger " + this.passengerID + " has deposit the suitcase";
+                //SendMessages.wirte(textForLog, 1);    IMPORTANTE
                 System.out.println(textForLog);
                 this.log.writeToTheLog(textForLog, "Info");
             } catch (InterruptedException ex) {
