@@ -52,6 +52,8 @@ public class Employee extends Thread {
                 try {
                     Thread.sleep((int) (Math.random() * ((70 - 40) + 1)) + 40);
                 } catch (InterruptedException ex) {
+                    String textForError = "There was an error: \n" + ex;
+                    this.log.writeToTheLog(textForError, "Error");
                 }
 
             } catch (InterruptedException ex) {
