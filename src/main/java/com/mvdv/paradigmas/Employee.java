@@ -36,7 +36,7 @@ public class Employee extends Thread {
                 System.out.println(textForLog);
                 this.log.writeToTheLog(textForLog, "Info");
                 try {
-                    Thread.sleep((int) (Math.random() * ((70 - 40) + 1)) + 40);
+                    Thread.sleep((int) (Math.random() * ((700 - 400) + 1)) + 400);
                 } catch (InterruptedException ex) {
                     String textForError = "There was an error: \n" + ex;
                     this.log.writeToTheLog(textForError, "Error");
@@ -48,7 +48,7 @@ public class Employee extends Thread {
                 this.log.writeToTheLog(textForOtherLog, "Info");
                 
                 try {
-                    Thread.sleep((int) (Math.random() * ((70 - 40) + 1)) + 40);
+                    Thread.sleep((int) (Math.random() * ((700 - 400) + 1)) + 400);
                 } catch (InterruptedException ex) {
                     String textForError = "There was an error: \n" + ex;
                     this.log.writeToTheLog(textForError, "Error");

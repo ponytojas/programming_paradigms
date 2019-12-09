@@ -44,7 +44,7 @@ public class Passenger extends Thread {
             }
 
             try {
-                Thread.sleep((int) (Math.random() * ((100 - 50) + 1)) + 50);
+                Thread.sleep((int) (Math.random() * ((1000 - 500) + 1)) + 500);
             } catch (InterruptedException ex) {
                 String textForError = "There was an error: \n" + ex;
                 this.log.writeToTheLog(textForError, "Error");
