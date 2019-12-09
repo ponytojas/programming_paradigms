@@ -23,7 +23,7 @@ import java.util.concurrent.Semaphore;
 public class Log {
     private final String currentDirectory = System.getProperty("user.dir");
     private File log = new File(currentDirectory + "/airport.log");
-    Semaphore semaphore;
+    private Semaphore semaphore;
 
     public Log() throws IOException {
         this.semaphore = new Semaphore(1, true);
