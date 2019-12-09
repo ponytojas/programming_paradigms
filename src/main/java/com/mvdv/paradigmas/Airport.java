@@ -1,6 +1,7 @@
 package com.mvdv.paradigmas;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 /**
@@ -12,8 +13,10 @@ public class Airport {
     @SuppressWarnings("empty-statement")
     public static void main(String[] args) throws IOException, InterruptedException {
         
-        Interface gui = new Interface();
-        gui.launch();
+        try{
+            Interface gui = new Interface();
+            gui.launch();
+        }catch (InterruptedException | InvocationTargetException e){}
 
         Creator creator = new Creator();
         Airplane airplane = new Airplane();
