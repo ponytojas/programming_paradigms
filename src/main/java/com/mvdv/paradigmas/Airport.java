@@ -11,12 +11,16 @@ public class Airport {
 
     @SuppressWarnings("empty-statement")
     public static void main(String[] args) throws IOException, InterruptedException {
+        
+        Interface gui = new Interface();
+        gui.launch();
 
         Creator creator = new Creator();
         Airplane airplane = new Airplane();
         SuitcaseConveyor conveyor = new SuitcaseConveyor();
         Log log = new Log();
         log.writeToTheLog("Es una prueba", "Info");
+
 
 
         ArrayList<Employee> employees = creator.createEmployees(2, conveyor, airplane, log);
