@@ -2,6 +2,8 @@ package com.mvdv.paradigmas;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+
+import javax.swing.JButton;
 import javax.swing.JTextArea;
 
 /**
@@ -12,10 +14,22 @@ public class Interface extends javax.swing.JFrame {
 
     private ArrayList<String> suitcaseConveyorPosition;
     private ArrayList<JTextArea> arrayTextAreas;
+    private ArrayList <JButton> employeesButtons;
     private String airplaneText = "";
+    private ArrayList <Passenger> passengers;
+    private ArrayList <Employee> employees;
     private int counter = 0;
+    private ArrayList <Boolean> areEmployeesRunning;
+    private boolean globalRunning;
     
     public Interface() {
+        this.employeesButtons = new ArrayList<>();
+        
+        this.areEmployeesRunning = new ArrayList<>();
+        this.areEmployeesRunning.add(true);
+        this.areEmployeesRunning.add(true);
+        this.globalRunning = true;
+
         this.suitcaseConveyorPosition = new ArrayList<>();
         for(int indexArray = 0; indexArray < 8; indexArray++)
             this.suitcaseConveyorPosition.add("");
@@ -54,6 +68,13 @@ public class Interface extends javax.swing.JFrame {
         this.addContentToAirplane("Pasajero7-M1");
         this.addContentToAirplane("Pasajero8-M1");
         this.addContentToAirplane("Pasajero9-M1");
+
+        this.areEmployeesRunning.set(0, false);
+        this.areEmployeesRunning.set(1, false);
+        this.changeEmployeeText(1);
+        this.changeEmployeeText(2);
+        this.areEmployeesRunning.set(0, true);
+        this.changeEmployeeText(1);
         
     }
 
@@ -240,22 +261,25 @@ public class Interface extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(72, 72, 85));
         jButton1.setFont(new java.awt.Font("Open Sans", 0, 13)); // NOI18N
         jButton1.setForeground(new java.awt.Color(250, 250, 250));
-        jButton1.setText("jButton1");
+        jButton1.setText("Pausar empleado");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        
+        this.employeesButtons.add(jButton1);
 
         jButton2.setBackground(new java.awt.Color(72, 72, 85));
         jButton2.setFont(new java.awt.Font("Open Sans", 0, 13)); // NOI18N
         jButton2.setForeground(new java.awt.Color(250, 250, 250));
-        jButton2.setText("jButton1");
+        jButton2.setText("Pausar empleado");
+        this.employeesButtons.add(jButton2);
 
         jButton3.setBackground(new java.awt.Color(72, 72, 85));
         jButton3.setFont(new java.awt.Font("Open Sans", 0, 13)); // NOI18N
         jButton3.setForeground(new java.awt.Color(250, 250, 250));
-        jButton3.setText("jButton1");
+        jButton3.setText("Pausar todo");
         jButton3.setBounds(new java.awt.Rectangle(15, 15, 15, 0));
 
         conveyorPosition8.setEditable(false);
@@ -512,6 +536,24 @@ public class Interface extends javax.swing.JFrame {
         this.counter += 1;
         
         this.airplaneContent.setText(this.airplaneText);
+    }
+
+    public void addEmployeesAndPassengers(ArrayList <Passenger> passengers, ArrayList <Employee> employees ){
+        this.passengers = passengers;
+        this. employees = employees;
+    }
+
+    public void changeEmployeeText(int employee){
+        String textForButton = (this.areEmployeesRunning.get(employee - 1)) ? "Pausar":"Reanudar";
+        textForButton += " empleado";
+        this.employeesButtons.get(employee - 1).setText(textForButton);
+
+    }
+
+    public void changeGlobalText(){
+        String textForButton = (this.globalRunning) ? "Pausar":"Reanudar";
+        textForButton += " todo";
+        jButton3.setText(textForButton);
     }
 
     // Variables declaration - do not modify                     
