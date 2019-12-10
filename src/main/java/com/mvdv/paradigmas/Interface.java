@@ -562,9 +562,9 @@ public class Interface extends javax.swing.JFrame {
     }
 
     public void changeEmployeeText(int employee){
-        String textForButton = (this.areEmployeesRunning.get(employee - 1)) ? "Pausar":"Reanudar";
+        String textForButton = (this.areEmployeesRunning.get(employee)) ? "Pausar":"Reanudar";
         textForButton += " empleado";
-        this.employeesButtons.get(employee - 1).setText(textForButton);
+        this.employeesButtons.get(employee).setText(textForButton);
 
     }
 
