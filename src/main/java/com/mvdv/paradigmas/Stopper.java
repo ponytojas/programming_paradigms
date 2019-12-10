@@ -55,9 +55,11 @@ public class Stopper {
     }
 
     public void setEmployeeLock(int employeeID){
-        this.employeeStop.set(employeeID, !this.employeeStop.get(employeeID));
-        if(!this.employeeStop.get(employeeID))
-            this.sendEmployeeSignal(employeeID);
+        if(!this.globalStop){
+            this.employeeStop.set(employeeID, !this.employeeStop.get(employeeID));
+            if(!this.employeeStop.get(employeeID))
+                this.sendEmployeeSignal(employeeID);
+        }
     }
 
     public void setGlobalLock(){
@@ -65,10 +67,21 @@ public class Stopper {
     }
 
     public void sendEmployeeSignal(int employeeID){
-        this.stopEmployees.get(employeeID).signal();
+        try{
+            this.employeesLock.get(employeeID).lock();
+            this.stopEmployees.get(employeeID).signal();
+        }finally{
+            this.employeesLock.get(employeeID).unlock();
+        }
+        
     }
 
     public void sendGlobalSignal(){
-        this.stopGlobal.signalAll();
+        try{
+            this.lockGlobal.lock();
+            this.stopGlobal.signalAll();
+        }finally{
+            this.lockGlobal.unlock();
+        }
     }
 }
