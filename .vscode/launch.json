@@ -1,7 +1,13 @@
 {
     "version": "0.2.0",
     "configurations": [
-    
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Interface",
+            "request": "launch",
+            "mainClass": "com.mvdv.paradigmas.Interface",
+            "projectName": "Airport"
+        },
         {
             "type": "java",
             "name": "CodeLens (Launch) - Airport",
