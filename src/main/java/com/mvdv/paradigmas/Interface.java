@@ -287,6 +287,11 @@ public class Interface extends javax.swing.JFrame {
         jButton3.setForeground(new java.awt.Color(250, 250, 250));
         jButton3.setText("Pausar todo");
         jButton3.setBounds(new java.awt.Rectangle(15, 15, 15, 0));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         conveyorPosition8.setEditable(false);
         conveyorPosition8.setColumns(20);
@@ -440,15 +445,28 @@ public class Interface extends javax.swing.JFrame {
     }// </editor-fold>                        
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {        
-        this.stopper.setEmployeeLock(0);
-        this.areEmployeesRunning.set(0, !this.areEmployeesRunning.get(0));
-        this.changeEmployeeText(0);
+        if(this.globalRunning){    
+            this.stopper.setEmployeeLock(0);
+            this.areEmployeesRunning.set(0, !this.areEmployeesRunning.get(0));
+            this.changeEmployeeText(0);
+        }
     }     
     
-    private synchronized void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-        this.stopper.setEmployeeLock(1);
-        this.areEmployeesRunning.set(1, !this.areEmployeesRunning.get(1));
-        this.changeEmployeeText(1);
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
+        if(this.globalRunning){
+            this.stopper.setEmployeeLock(1);
+            this.areEmployeesRunning.set(1, !this.areEmployeesRunning.get(1));
+            this.changeEmployeeText(1);
+        }
+    }   
+
+        private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
+        this.stopper.setGlobalLock();
+        this.globalRunning = !this.globalRunning;
+        this.areEmployeesRunning.set(0, this.globalRunning);
+        this.areEmployeesRunning.set(1, this.globalRunning);
+        this.changeGlobalText();
+        this.changeEmployeeText(-1);
     }   
 
 
@@ -562,9 +580,21 @@ public class Interface extends javax.swing.JFrame {
     }
 
     public void changeEmployeeText(int employee){
-        String textForButton = (this.areEmployeesRunning.get(employee)) ? "Pausar":"Reanudar";
-        textForButton += " empleado";
-        this.employeesButtons.get(employee).setText(textForButton);
+        if(employee != -1){
+            String textForButton = (this.areEmployeesRunning.get(employee)) ? "Pausar":"Reanudar";
+            textForButton += " empleado";
+            this.employeesButtons.get(employee).setText(textForButton);
+        }else{
+            if(!this.globalRunning){
+                String textForButton = "Sistema parado";
+                this.employeesButtons.get(0).setText(textForButton);
+                this.employeesButtons.get(1).setText(textForButton);
+            }else{
+                String textForButton = "Pausar empleado";
+                this.employeesButtons.get(0).setText(textForButton);
+                this.employeesButtons.get(1).setText(textForButton);
+            }
+        }
 
     }
 
