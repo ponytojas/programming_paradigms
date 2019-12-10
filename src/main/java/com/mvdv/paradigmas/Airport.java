@@ -1,4 +1,4 @@
-package com.mvdv.paradigmas;
+/*package com.mvdv.paradigmas;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -8,27 +8,25 @@ import java.util.ArrayList;
  *
  * @author Marcos Vicente && Daniel Villalobos
  */
+/*
 public class Airport {
 
     @SuppressWarnings("empty-statement")
     public static void main(String[] args) throws IOException, InterruptedException {
-        
-        try{
-            Interface gui = new Interface();
-            gui.launch();
-        }catch (InterruptedException | InvocationTargetException e){}
-
+        Interface gui = new Interface();
         Creator creator = new Creator();
         Airplane airplane = new Airplane();
         SuitcaseConveyor conveyor = new SuitcaseConveyor();
         Log log = new Log();
+        Stopper stopper = new Stopper();
+
         log.writeToTheLog("Es una prueba", "Info");
 
+        ArrayList<Employee> employees = creator.createEmployees(2, conveyor, airplane, log, stopper);
+        ArrayList<Passenger> passengers = creator.createPassenger(40, conveyor, log, stopper);
 
 
-        ArrayList<Employee> employees = creator.createEmployees(2, conveyor, airplane, log);
-        ArrayList<Passenger> passengers = creator.createPassenger(40, conveyor, log);
-        
+        gui.addEmployeesAndPassengers(passengers, employees);
         System.out.println("Pintando cosas para ver que funciona");
 
         employees.forEach((employee) -> {
@@ -41,10 +39,16 @@ public class Airport {
 
         for (Passenger passenger : passengers)
             passenger.join();
-        
+
         System.out.println("Oh my god ha terminado");
 
         for (Employee employee : employees)
             employee.join();
+
+    }
+
+    public void pauseEmployee(int employeeID) {
+
     }
 }
+*/
