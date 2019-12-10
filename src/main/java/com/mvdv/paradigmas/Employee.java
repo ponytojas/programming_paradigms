@@ -33,7 +33,9 @@ public class Employee extends Thread {
     public synchronized void run() {
         while (true) {
             try {
+                this.stopper.checkGlobal();
                 this.stopper.checkEmployee(this.id);
+                
                 this.suitcases.add(this.suitcaseConveyor.getSuitcase());
                 String textForLog = "The employee " + this.id + " has get a suitcase";
                 System.out.println(textForLog);
@@ -45,7 +47,9 @@ public class Employee extends Thread {
                     this.log.writeToTheLog(textForError, "Error");
                 }
 
+                this.stopper.checkGlobal();
                 this.stopper.checkEmployee(this.id);
+                
                 this.airplane.setSuitcase(this.suitcases.remove(0));
                 String textForOtherLog = "The employee " + this.id + " has deposit a suitcase";
                 System.out.println(textForOtherLog);
