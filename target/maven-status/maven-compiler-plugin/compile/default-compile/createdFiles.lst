@@ -1,5 +1,12 @@
+com/mvdv/paradigmas/Creator.class
 com/mvdv/paradigmas/Airport.class
 com/mvdv/paradigmas/Passenger.class
+com/mvdv/paradigmas/Interface$1.class
 com/mvdv/paradigmas/Employee.class
+com/mvdv/paradigmas/Stopper.class
+com/mvdv/paradigmas/Airplane.class
+com/mvdv/paradigmas/Log.class
+com/mvdv/paradigmas/Interface$2.class
+com/mvdv/paradigmas/Interface.class
 com/mvdv/paradigmas/Suitcase.class
 com/mvdv/paradigmas/SuitcaseConveyor.class
