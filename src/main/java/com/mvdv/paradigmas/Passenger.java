@@ -12,14 +12,16 @@ public class Passenger extends Thread {
     private ArrayList<Suitcase> passengerSuitcases;
     private Log log;
     private SuitcaseConveyor suitcaseConveyor;
+    private Stopper stopper;
 
-    public Passenger(int ID, SuitcaseConveyor suitcaseConveyor, Log log) {
+    public Passenger(int ID, SuitcaseConveyor suitcaseConveyor, Log log, Stopper stopper) {
         this.passengerID = "Pasajero" + String.valueOf(ID);
         this.passengerSuitcases = new ArrayList<>();
         this.passengerSuitcases.add(new Suitcase(ID, 1));
         this.passengerSuitcases.add(new Suitcase(ID, 2));
         this.suitcaseConveyor = suitcaseConveyor;
         this.log = log;
+        this.stopper = stopper;
     }
 
     public String getPassengerID() {
@@ -33,6 +35,7 @@ public class Passenger extends Thread {
     @Override
     public void run() {
         while (!this.passengerSuitcases.isEmpty()) {
+            this.stopper.checkGlobal();
             try {
                 this.suitcaseConveyor.depositSuitcase(this.passengerSuitcases.remove(0));
                 String textForLog = "The passenger " + this.passengerID + " has deposit the suitcase";
