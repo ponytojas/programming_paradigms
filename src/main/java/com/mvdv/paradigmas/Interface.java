@@ -1,7 +1,10 @@
 package com.mvdv.paradigmas;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JButton;
 import javax.swing.JTextArea;
@@ -14,16 +17,30 @@ public class Interface extends javax.swing.JFrame {
 
     private ArrayList<String> suitcaseConveyorPosition;
     private ArrayList<JTextArea> arrayTextAreas;
-    private ArrayList <JButton> employeesButtons;
+    private ArrayList<JButton> employeesButtons;
+    private ArrayList<Boolean> areEmployeesRunning;
+
+    private ArrayList<Passenger> passengers;
+    private ArrayList<Employee> employees;
+
     private String airplaneText = "";
-    private ArrayList <Passenger> passengers;
-    private ArrayList <Employee> employees;
     private int counter = 0;
-    private ArrayList <Boolean> areEmployeesRunning;
+
     private boolean globalRunning;
-    
-    public Interface() {
+
+    private Creator creator = new Creator();
+    private Airplane airplane = new Airplane();
+    private SuitcaseConveyor conveyor = new SuitcaseConveyor();
+    private Stopper stopper = new Stopper();
+
+    public Interface() throws IOException, InterruptedException {
+        
+
+        Log log = new Log();
+
         this.employeesButtons = new ArrayList<>();
+        this.passengers = new ArrayList <>();
+        this.employees = new ArrayList<>();
         
         this.areEmployeesRunning = new ArrayList<>();
         this.areEmployeesRunning.add(true);
@@ -34,10 +51,8 @@ public class Interface extends javax.swing.JFrame {
         for(int indexArray = 0; indexArray < 8; indexArray++)
             this.suitcaseConveyorPosition.add("");
         this.arrayTextAreas = new ArrayList<>();
+        
         initComponents();
-        this.suitcaseConveyorPosition.forEach((text)->{
-            System.out.println("Aquí va algo: "+ text);
-        });
         
         this.addToFirstEmptyPosition("Probando1");
         this.addToFirstEmptyPosition("Probando2");
@@ -48,34 +63,19 @@ public class Interface extends javax.swing.JFrame {
         this.addToFirstEmptyPosition("Probando7");
         this.addToFirstEmptyPosition("Probando8");
 
-        System.out.println("Hemos acabado");
+        this.areEmployeesRunning.set(0, true);
+        this.areEmployeesRunning.set(1, true);
         
-        this.suitcaseConveyorPosition.forEach((text)->{
-            System.out.println("Aquí va algo: "+ text);
+        this.employees = creator.createEmployees(2, this.conveyor, this.airplane, log, this.stopper);
+        this.passengers = creator.createPassenger(40, this.conveyor, log, this.stopper);
+
+        employees.forEach((employee) -> {
+            employee.start();
         });
 
-        this.removeFirstPosition();
-        this.updateEmployeeGoBack(1, true);
-        this.updateEmployeeGoBack(2, false);
-        this.updateEmployeeText(1, true, "Pasajero1-M1");
-        this.updateEmployeeText(2,false, null);
-        this.addContentToAirplane("Pasajero1-M1");
-        this.addContentToAirplane("Pasajero2-M1");
-        this.addContentToAirplane("Pasajero3-M1");
-        this.addContentToAirplane("Pasajero4-M1");
-        this.addContentToAirplane("Pasajero5-M1");
-        this.addContentToAirplane("Pasajero6-M1");
-        this.addContentToAirplane("Pasajero7-M1");
-        this.addContentToAirplane("Pasajero8-M1");
-        this.addContentToAirplane("Pasajero9-M1");
-
-        this.areEmployeesRunning.set(0, false);
-        this.areEmployeesRunning.set(1, false);
-        this.changeEmployeeText(1);
-        this.changeEmployeeText(2);
-        this.areEmployeesRunning.set(0, true);
-        this.changeEmployeeText(1);
-        
+        passengers.forEach((passenger) -> {
+            passenger.start();
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -122,12 +122,25 @@ public class Interface extends javax.swing.JFrame {
         jScrollPane4.setViewportView(jTextArea4);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Ejemplo de Ventana");
+        setTitle("Airport");
         setBackground(new java.awt.Color(0, 0, 0));
         setFont(new java.awt.Font("Open Sans", 0, 10)); // NOI18N
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(250, 250, 250));
+
+        conveyorPosition1.setEditable(false);
+        conveyorPosition1.setColumns(20);
+        conveyorPosition1.setFont(new java.awt.Font("Open Sans", 0, 20)); // NOI18N
+        conveyorPosition1.setForeground(new java.awt.Color(72, 72, 85));
+        conveyorPosition1.setRows(1);
+        conveyorPosition1.setBorder(null);
+        conveyorPosition1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        conveyorPosition1.setDisabledTextColor(new java.awt.Color(72, 72, 85));
+        conveyorPosition1.setSelectionColor(new java.awt.Color(0, 0, 0));
+        this.arrayTextAreas.add(conveyorPosition1);
+        jScrollPane5.setViewportView(conveyorPosition1);
+        jScrollPane5.setVisible(true);
 
         conveyorPosition2.setEditable(false);
         conveyorPosition2.setColumns(20);
@@ -164,18 +177,6 @@ public class Interface extends javax.swing.JFrame {
         conveyorPosition4.setSelectionColor(new java.awt.Color(0, 0, 0));
         this.arrayTextAreas.add(conveyorPosition4);
         jScrollPane3.setViewportView(conveyorPosition4);
-
-        conveyorPosition1.setEditable(false);
-        conveyorPosition1.setColumns(20);
-        conveyorPosition1.setFont(new java.awt.Font("Open Sans", 0, 20)); // NOI18N
-        conveyorPosition1.setForeground(new java.awt.Color(72, 72, 85));
-        conveyorPosition1.setRows(1);
-        conveyorPosition1.setBorder(null);
-        conveyorPosition1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        conveyorPosition1.setDisabledTextColor(new java.awt.Color(72, 72, 85));
-        conveyorPosition1.setSelectionColor(new java.awt.Color(0, 0, 0));
-        this.arrayTextAreas.add(conveyorPosition1);
-        jScrollPane5.setViewportView(conveyorPosition1);
 
         conveyorPosition5.setEditable(false);
         conveyorPosition5.setColumns(20);
@@ -274,6 +275,11 @@ public class Interface extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Open Sans", 0, 13)); // NOI18N
         jButton2.setForeground(new java.awt.Color(250, 250, 250));
         jButton2.setText("Pausar empleado");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         this.employeesButtons.add(jButton2);
 
         jButton3.setBackground(new java.awt.Color(72, 72, 85));
@@ -433,13 +439,25 @@ public class Interface extends javax.swing.JFrame {
         setBounds(0, 0, 1064, 993);
     }// </editor-fold>                        
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-    }                                        
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {        
+        this.stopper.setEmployeeLock(0);
+        this.areEmployeesRunning.set(0, !this.areEmployeesRunning.get(0));
+        this.changeEmployeeText(0);
+    }     
+    
+    private synchronized void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
+        this.stopper.setEmployeeLock(1);
+        this.areEmployeesRunning.set(1, !this.areEmployeesRunning.get(1));
+        this.changeEmployeeText(1);
+    }   
+
 
     /**
      * @param args the command line arguments
+     * @throws java.lang.InterruptedException
+     * @throws java.lang.reflect.InvocationTargetException
      */
-    public void launch() throws InterruptedException, InvocationTargetException {
+    public static void main(String[] args) throws InterruptedException, InvocationTargetException {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -447,20 +465,18 @@ public class Interface extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Interface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Interface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Interface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Interface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        
+        //</editor-fold>
 
-        java.awt.EventQueue.invokeAndWait(new Runnable() {
-            public void run() {
+        java.awt.EventQueue.invokeLater(() -> {
+            try {
                 new Interface().setVisible(true);
+            } catch (IOException | InterruptedException ex) {
+                Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
     }
@@ -538,9 +554,11 @@ public class Interface extends javax.swing.JFrame {
         this.airplaneContent.setText(this.airplaneText);
     }
 
-    public void addEmployeesAndPassengers(ArrayList <Passenger> passengers, ArrayList <Employee> employees ){
+    public void addEmployeesAndPassengers(ArrayList <Passenger> passengers, ArrayList <Employee> employees ) throws InterruptedException{
         this.passengers = passengers;
         this. employees = employees;
+        System.out.println("Tamaño de pasageros: " + this.passengers.size());
+        System.out.println("Tamaño de empleados: " + this.employees.size()); 
     }
 
     public void changeEmployeeText(int employee){
