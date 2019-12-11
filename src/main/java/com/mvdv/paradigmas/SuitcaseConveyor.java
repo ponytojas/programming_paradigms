@@ -15,9 +15,11 @@ public class SuitcaseConveyor {
     private Lock lock = new ReentrantLock();
     private Condition full = lock.newCondition();
     private Condition empty = lock.newCondition();
+    private Interface gui;
 
-    public SuitcaseConveyor() {
+    public SuitcaseConveyor(Interface gui) {
         this.conveySuitcase = new ArrayList<>();
+        this.gui = gui;
     }
 
     public void depositSuitcase(Suitcase suitcase) throws InterruptedException {
@@ -27,6 +29,7 @@ public class SuitcaseConveyor {
                 full.await();
             }
             this.conveySuitcase.add(suitcase);
+            this.gui.addToFirstEmptyPosition(suitcase.getSuitcaseID());
             empty.signal();
         } finally {
             this.lock.unlock();
@@ -43,6 +46,7 @@ public class SuitcaseConveyor {
             }
 
             toReturnSuitcase = this.conveySuitcase.remove(0);
+            this.gui.removeFirstPosition();
             this.full.signal();
 
         } finally {
