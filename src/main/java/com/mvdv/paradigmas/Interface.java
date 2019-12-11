@@ -34,13 +34,13 @@ public class Interface extends javax.swing.JFrame {
     private boolean globalRunning;
 
     private final Creator creator = new Creator();
-    private final Airplane airplane = new Airplane();
-    private final SuitcaseConveyor conveyor = new SuitcaseConveyor();
+    private final Airplane airplane;
+    private final SuitcaseConveyor conveyor = new SuitcaseConveyor(this);
     private final Stopper stopper = new Stopper();
 
     public Interface() throws IOException, InterruptedException {
         
-
+        this.airplane = new Airplane(this);
         final Log log = new Log();
 
         this.employeesButtons = new ArrayList<>();
@@ -58,20 +58,10 @@ public class Interface extends javax.swing.JFrame {
         this.arrayTextAreas = new ArrayList<>();
         
         initComponents();
-        
-        this.addToFirstEmptyPosition("Probando1");
-        this.addToFirstEmptyPosition("Probando2");
-        this.addToFirstEmptyPosition("Probando3");
-        this.addToFirstEmptyPosition("Probando4");
-        this.addToFirstEmptyPosition("Probando5");
-        this.addToFirstEmptyPosition("Probando6");
-        this.addToFirstEmptyPosition("Probando7");
-        this.addToFirstEmptyPosition("Probando8");
-
         this.areEmployeesRunning.set(0, true);
         this.areEmployeesRunning.set(1, true);
         
-        this.employees = creator.createEmployees(2, this.conveyor, this.airplane, log, this.stopper);
+        this.employees = creator.createEmployees(2, this.conveyor, this.airplane, log, this.stopper, this);
         this.passengers = creator.createPassenger(40, this.conveyor, log, this.stopper);
 
         employees.forEach((employee) -> {
@@ -266,7 +256,7 @@ public class Interface extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(72, 72, 85));
         jButton1.setFont(new java.awt.Font("Open Sans", 0, 13)); // NOI18N
         jButton1.setForeground(new java.awt.Color(250, 250, 250));
-        jButton1.setText("Pausar empleado");
+        jButton1.setText("Pause employee");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(final java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -278,7 +268,7 @@ public class Interface extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(72, 72, 85));
         jButton2.setFont(new java.awt.Font("Open Sans", 0, 13)); // NOI18N
         jButton2.setForeground(new java.awt.Color(250, 250, 250));
-        jButton2.setText("Pausar empleado");
+        jButton2.setText("Pause employee");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(final java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -289,7 +279,7 @@ public class Interface extends javax.swing.JFrame {
         jButton3.setBackground(new java.awt.Color(72, 72, 85));
         jButton3.setFont(new java.awt.Font("Open Sans", 0, 13)); // NOI18N
         jButton3.setForeground(new java.awt.Color(250, 250, 250));
-        jButton3.setText("Pausar todo");
+        jButton3.setText("Pause everything");
         jButton3.setBounds(new java.awt.Rectangle(15, 15, 15, 0));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(final java.awt.event.ActionEvent evt) {
@@ -532,7 +522,7 @@ public class Interface extends javax.swing.JFrame {
         }
     }
     
-    public void updateEmployeeGoBack(final int employee, final boolean go){
+    public void updateEmployeeGoBack(int employee, boolean go){
         switch(employee){
             case 1:
                 this.GoAndComeback1.setText((go)?"==========>": "<==========");
@@ -544,10 +534,10 @@ public class Interface extends javax.swing.JFrame {
         }
     }
     
-    public void updateEmployeeText(final int employee, final boolean go, final String id){
+    public void updateEmployeeText(int employee, boolean go, String id){
         
-        final String stringToSet = ((go)?"El empleado lleva la maleta: " + id 
-                : "El empleado está volviendo");
+        final String stringToSet = ((go)?"Employee is carrying the suitcase " + id 
+                : "Employee is coming back");
         
         switch(employee){
             case 1:
@@ -576,25 +566,18 @@ public class Interface extends javax.swing.JFrame {
         this.airplaneContent.setText(this.airplaneText);
     }
 
-    public void addEmployeesAndPassengers(final ArrayList <Passenger> passengers, final ArrayList <Employee> employees ) throws InterruptedException{
-        this.passengers = passengers;
-        this. employees = employees;
-        System.out.println("Tamaño de pasageros: " + this.passengers.size());
-        System.out.println("Tamaño de empleados: " + this.employees.size()); 
-    }
-
     public void changeEmployeeText(final int employee){
         if(employee != -1){
-            String textForButton = (this.areEmployeesRunning.get(employee)) ? "Pausar":"Reanudar";
-            textForButton += " empleado";
+            String textForButton = (this.areEmployeesRunning.get(employee)) ? "Pause":"Resume";
+            textForButton += " employee";
             this.employeesButtons.get(employee).setText(textForButton);
         }else{
             if(!this.globalRunning){
-                final String textForButton = "Sistema parado";
+                final String textForButton = "System stopped";
                 this.employeesButtons.get(0).setText(textForButton);
                 this.employeesButtons.get(1).setText(textForButton);
             }else{
-                final String textForButton = "Pausar empleado";
+                final String textForButton = "Pause employee";
                 this.employeesButtons.get(0).setText(textForButton);
                 this.employeesButtons.get(1).setText(textForButton);
             }
@@ -602,8 +585,8 @@ public class Interface extends javax.swing.JFrame {
     }
 
     public void changeGlobalText(){
-        String textForButton = (this.globalRunning) ? "Pausar":"Reanudar";
-        textForButton += " todo";
+        String textForButton = (this.globalRunning) ? "Pause":"Resume";
+        textForButton += " everything";
         jButton3.setText(textForButton);
     }
 
