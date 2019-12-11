@@ -58,7 +58,7 @@ public class Stopper {
         if(!this.globalStop){
             this.employeeStop.set(employeeID, !this.employeeStop.get(employeeID));
             if(!this.employeeStop.get(employeeID))
-                this.sendEmployeeSignal(employeeID);
+                this.sendEmployeeSignal(employeeID + 1);
         }
     }
 
