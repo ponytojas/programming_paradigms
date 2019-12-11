@@ -15,10 +15,15 @@ import javax.swing.JTextArea;
  */
 public class Interface extends javax.swing.JFrame {
 
-    private ArrayList<String> suitcaseConveyorPosition;
-    private ArrayList<JTextArea> arrayTextAreas;
-    private ArrayList<JButton> employeesButtons;
-    private ArrayList<Boolean> areEmployeesRunning;
+    /**
+     * This is created to avoid warnings
+     */
+    private static final long serialVersionUID = 1L;
+
+    private final ArrayList<String> suitcaseConveyorPosition;
+    private final ArrayList<JTextArea> arrayTextAreas;
+    private final ArrayList<JButton> employeesButtons;
+    private final ArrayList<Boolean> areEmployeesRunning;
 
     private ArrayList<Passenger> passengers;
     private ArrayList<Employee> employees;
@@ -28,15 +33,15 @@ public class Interface extends javax.swing.JFrame {
 
     private boolean globalRunning;
 
-    private Creator creator = new Creator();
-    private Airplane airplane = new Airplane();
-    private SuitcaseConveyor conveyor = new SuitcaseConveyor();
-    private Stopper stopper = new Stopper();
+    private final Creator creator = new Creator();
+    private final Airplane airplane = new Airplane();
+    private final SuitcaseConveyor conveyor = new SuitcaseConveyor();
+    private final Stopper stopper = new Stopper();
 
     public Interface() throws IOException, InterruptedException {
         
 
-        Log log = new Log();
+        final Log log = new Log();
 
         this.employeesButtons = new ArrayList<>();
         this.passengers = new ArrayList <>();
@@ -78,7 +83,6 @@ public class Interface extends javax.swing.JFrame {
         });
     }
 
-    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
@@ -264,7 +268,7 @@ public class Interface extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(250, 250, 250));
         jButton1.setText("Pausar empleado");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(final java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
@@ -276,7 +280,7 @@ public class Interface extends javax.swing.JFrame {
         jButton2.setForeground(new java.awt.Color(250, 250, 250));
         jButton2.setText("Pausar empleado");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(final java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
@@ -288,7 +292,7 @@ public class Interface extends javax.swing.JFrame {
         jButton3.setText("Pausar todo");
         jButton3.setBounds(new java.awt.Rectangle(15, 15, 15, 0));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(final java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
@@ -317,7 +321,7 @@ public class Interface extends javax.swing.JFrame {
         GoAndComeback1.setForeground(new java.awt.Color(72, 72, 85));
         GoAndComeback1.setText("<==========>");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        final javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -428,7 +432,7 @@ public class Interface extends javax.swing.JFrame {
                     .addContainerGap(759, Short.MAX_VALUE)))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        final javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -444,7 +448,7 @@ public class Interface extends javax.swing.JFrame {
         setBounds(0, 0, 1064, 993);
     }// </editor-fold>                        
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {        
+    private void jButton1ActionPerformed(final java.awt.event.ActionEvent evt) {        
         if(this.globalRunning){    
             this.stopper.setEmployeeLock(0);
             this.areEmployeesRunning.set(0, !this.areEmployeesRunning.get(0));
@@ -452,7 +456,7 @@ public class Interface extends javax.swing.JFrame {
         }
     }     
     
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void jButton2ActionPerformed(final java.awt.event.ActionEvent evt) {
         if(this.globalRunning){
             this.stopper.setEmployeeLock(1);
             this.areEmployeesRunning.set(1, !this.areEmployeesRunning.get(1));
@@ -460,7 +464,7 @@ public class Interface extends javax.swing.JFrame {
         }
     }   
 
-        private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
+        private void jButton3ActionPerformed(final java.awt.event.ActionEvent evt) {
         this.stopper.setGlobalLock();
         this.globalRunning = !this.globalRunning;
         this.areEmployeesRunning.set(0, this.globalRunning);
@@ -475,9 +479,9 @@ public class Interface extends javax.swing.JFrame {
      * @throws java.lang.InterruptedException
      * @throws java.lang.reflect.InvocationTargetException
      */
-    public static void main(String[] args) throws InterruptedException, InvocationTargetException {
+    public static void main(final String[] args) throws InterruptedException, InvocationTargetException {
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            for (final javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
@@ -510,7 +514,7 @@ public class Interface extends javax.swing.JFrame {
         return returnValue;
     }
     
-    public void addToFirstEmptyPosition(String textToAdd){
+    public void addToFirstEmptyPosition(final String textToAdd){
         this.suitcaseConveyorPosition.set(this.getFirtsEmptyPosition(), textToAdd);
         this.updateConveyorText();
     }
@@ -528,7 +532,7 @@ public class Interface extends javax.swing.JFrame {
         }
     }
     
-    public void updateEmployeeGoBack(int employee, boolean go){
+    public void updateEmployeeGoBack(final int employee, final boolean go){
         switch(employee){
             case 1:
                 this.GoAndComeback1.setText((go)?"==========>": "<==========");
@@ -540,9 +544,9 @@ public class Interface extends javax.swing.JFrame {
         }
     }
     
-    public void updateEmployeeText(int employee, boolean go, String id){
+    public void updateEmployeeText(final int employee, final boolean go, final String id){
         
-        String stringToSet = ((go)?"El empleado lleva la maleta: " + id 
+        final String stringToSet = ((go)?"El empleado lleva la maleta: " + id 
                 : "El empleado está volviendo");
         
         switch(employee){
@@ -555,7 +559,7 @@ public class Interface extends javax.swing.JFrame {
         }
     }
     
-    public void addContentToAirplane(String id){
+    public void addContentToAirplane(final String id){
 
         if (this.counter % 4 == 0 && this.counter != 0){
             this.airplaneText += "\n";
@@ -572,30 +576,29 @@ public class Interface extends javax.swing.JFrame {
         this.airplaneContent.setText(this.airplaneText);
     }
 
-    public void addEmployeesAndPassengers(ArrayList <Passenger> passengers, ArrayList <Employee> employees ) throws InterruptedException{
+    public void addEmployeesAndPassengers(final ArrayList <Passenger> passengers, final ArrayList <Employee> employees ) throws InterruptedException{
         this.passengers = passengers;
         this. employees = employees;
         System.out.println("Tamaño de pasageros: " + this.passengers.size());
         System.out.println("Tamaño de empleados: " + this.employees.size()); 
     }
 
-    public void changeEmployeeText(int employee){
+    public void changeEmployeeText(final int employee){
         if(employee != -1){
             String textForButton = (this.areEmployeesRunning.get(employee)) ? "Pausar":"Reanudar";
             textForButton += " empleado";
             this.employeesButtons.get(employee).setText(textForButton);
         }else{
             if(!this.globalRunning){
-                String textForButton = "Sistema parado";
+                final String textForButton = "Sistema parado";
                 this.employeesButtons.get(0).setText(textForButton);
                 this.employeesButtons.get(1).setText(textForButton);
             }else{
-                String textForButton = "Pausar empleado";
+                final String textForButton = "Pausar empleado";
                 this.employeesButtons.get(0).setText(textForButton);
                 this.employeesButtons.get(1).setText(textForButton);
             }
         }
-
     }
 
     public void changeGlobalText(){
