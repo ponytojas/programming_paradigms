@@ -16,7 +16,7 @@ public class Creator {
         ArrayList<Passenger> passengersToReturn = new ArrayList<>();
 
         for (int index = 0; index < amount; index++)
-            passengersToReturn.add(new Passenger(index, suitcaseConveyor, log, stopper));
+            passengersToReturn.add(new Passenger(index + 1, suitcaseConveyor, log, stopper));
         return passengersToReturn;
     }
 
@@ -30,20 +30,20 @@ public class Creator {
     }
 
     public ArrayList<Employee> createEmployees(int amount, SuitcaseConveyor suitcaseConveyor, Airplane airplane,
-            Log log, Stopper stopper) {
+            Log log, Stopper stopper, Interface gui) {
         ArrayList<Employee> employeessToReturn = new ArrayList<>();
 
         for (int index = 0; index < amount; index++)
-            employeessToReturn.add(new Employee(index, suitcaseConveyor, airplane, log, stopper));
+            employeessToReturn.add(new Employee(index + 1, suitcaseConveyor, airplane, log, stopper, gui));
         return employeessToReturn;
     }
 
     public ArrayList<Employee> createEmployees(int amount, int previousId, SuitcaseConveyor suitcaseConveyor,
-            Airplane airplane, Log log, Stopper stopper) {
+            Airplane airplane, Log log, Stopper stopper, Interface gui) {
         ArrayList<Employee> employeessToReturn = new ArrayList<>();
 
         for (int index = 0; index < amount; index++)
-            employeessToReturn.add(new Employee(index + previousId, suitcaseConveyor, airplane, log, stopper));
+            employeessToReturn.add(new Employee(index + previousId, suitcaseConveyor, airplane, log, stopper, gui));
         return employeessToReturn;
     }
 
