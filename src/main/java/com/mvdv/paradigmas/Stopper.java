@@ -30,14 +30,14 @@ public class Stopper {
 
     public void checkEmployee(int employeeID){
         try{
-            this.employeesLock.get(employeeID).lock();
-            while(employeeStop.get(employeeID)){
+            this.employeesLock.get(employeeID - 1).lock();
+            while(employeeStop.get(employeeID - 1)){
                 try{
-                    this.stopEmployees.get(employeeID).await();
+                    this.stopEmployees.get(employeeID - 1).await();
                 }catch(InterruptedException e){}
             }
         }finally{
-            this.employeesLock.get(employeeID).unlock();
+            this.employeesLock.get(employeeID - 1).unlock();
         }
     }
 
@@ -70,10 +70,10 @@ public class Stopper {
 
     public void sendEmployeeSignal(int employeeID){
         try{
-            this.employeesLock.get(employeeID).lock();
-            this.stopEmployees.get(employeeID).signal();
+            this.employeesLock.get(employeeID - 1).lock();
+            this.stopEmployees.get(employeeID - 1).signal();
         }finally{
-            this.employeesLock.get(employeeID).unlock();
+            this.employeesLock.get(employeeID - 1).unlock();
         }
         
     }
