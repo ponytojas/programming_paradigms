@@ -37,7 +37,7 @@ public class Stopper {
                 }catch(InterruptedException e){}
             }
         }finally{
-            this.employeesLock.get(employeeID).unlock();;
+            this.employeesLock.get(employeeID).unlock();
         }
     }
 
@@ -64,6 +64,8 @@ public class Stopper {
 
     public void setGlobalLock(){
         this.globalStop = !this.globalStop;
+        if(!this.globalStop)
+            this.sendGlobalSignal();
     }
 
     public void sendEmployeeSignal(int employeeID){
