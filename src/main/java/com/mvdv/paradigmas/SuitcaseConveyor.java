@@ -25,7 +25,7 @@ public class SuitcaseConveyor {
     public void depositSuitcase(Suitcase suitcase) throws InterruptedException {
         try {
             this.lock.lock();
-            if (this.isConveyorFull()) {
+            while (this.isConveyorFull()) {
                 full.await();
             }
             this.conveySuitcase.add(suitcase);
@@ -41,7 +41,7 @@ public class SuitcaseConveyor {
         try {
 
             this.lock.lock();
-            if (this.isConveyorEmpty()) {
+            while (this.isConveyorEmpty()) {
                 this.empty.await();
             }
 
