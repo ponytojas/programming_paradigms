@@ -27,3 +27,4 @@ log.txt
 *.xml
 
 /target/*
+airport.log.lock
