@@ -6,7 +6,8 @@
 package com.mycompany.client;
 
 import com.mvdv.paradigmas.Airplane;
-import com.mvdv.paradigmas.Suitcase;
+import com.mvdv.paradigmas.SuitcaseConveyor;
+
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -18,13 +19,20 @@ import java.util.ArrayList;
  */
 public class GetInfo extends UnicastRemoteObject implements Interface {
     
-    private ArrayList<Suitcase> airplaneContent;
+    private ArrayList<String> suitcasesIDConveyor;
+    private ArrayList<String> suitcasesIDAirplane;
+    
     public GetInfo() throws RemoteException{}
     
     
-    public ArrayList<String> getAirplaneContent(Airplane airplane) throws RemoteException{
-        this.airplaneContent = airplane.getAirplaneContent();
-        return airplaneContent;
+    public ArrayList<String> getAirplaneIDs() throws RemoteException{
+        this.suitcasesIDAirplane = Airplane.getAirplaneIDs();
+        return suitcasesIDAirplane;
+    }
+    
+    public ArrayList<String> getConveyorIDs() throws RemoteException{
+        this.suitcasesIDConveyor = SuitcaseConveyor.getConveyorIDs();
+        return suitcasesIDConveyor;
     }
     
     

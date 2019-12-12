@@ -486,6 +486,7 @@ public class Interface extends javax.swing.JFrame {
             }
         });
         
+        
         GetInfo objGetInfo = new GetInfo();
         Registry registry = LocateRegistry.createRegistry(1099);
         
@@ -493,9 +494,7 @@ public class Interface extends javax.swing.JFrame {
         System.out.println("Objeto ha sido encontrado");
         
                 
-                
-        
-        
+   
         
     }
     

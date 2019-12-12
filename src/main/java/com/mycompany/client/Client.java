@@ -14,7 +14,7 @@ import java.util.ArrayList;
  *
  * @author marks
  */
-public class Client {
+public class Client extends Thread {
         
     public static void main(String[] args){
         try{
@@ -24,14 +24,11 @@ public class Client {
          
             //Aqui le pido al servidor que me vaya haciendo:
             
-            ArrayList<Suitcase> arrayAirplane = objGetInfo.getAirplaneContent();
-            int size = arrayAirplane.size();
+            ArrayList<String> arrayAirplane = objGetInfo.getAirplaneIDs();
+            ArrayList<String> arrayConveyor = objGetInfo.getConveyorIDs();
             
-            for (int i=0; i<size; i++){
-                System.out.println(arrayAirplane.get(i));
-            }
-            
-           // escritor.write(msg, IDJpanel)
+          
+           // Aqui codigo de la interfaz
             
             
 

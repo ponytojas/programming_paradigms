@@ -17,9 +17,13 @@ public class Airplane {
     private Lock airplaneLock = new ReentrantLock();
 
     private ArrayList<Suitcase> airplaneContent;
-
+    private ArrayList<String> suitcasesID;
+    
+    
     public Airplane() {
         this.airplaneContent = new ArrayList<>();
+        this.suitcasesID = new ArrayList<>();            
+
     }
 
     public void setSuitcase(Suitcase newSuitcase) {
@@ -27,20 +31,17 @@ public class Airplane {
         try {
             this.airplaneLock.lock();
             this.airplaneContent.add(newSuitcase);
+            this.suitcasesID.add(newSuitcase.getSuitcaseID());
+            
         } finally {
             this.airplaneLock.unlock();
         }
     }
-    //Cambiar para que en vez de un array de maletas nos pase de ese array a otro de strings.
-    //public ArrayList<Suitcase> getAirplaneContent() {
-        //return airplaneContent;
-    //}
-    //public ArrayList<String> getAirplaneContent() {
-        //Aqui sacamos el ID de las maletas
-        
-       // return airplaneContent;
-    //}
-    
-    cliente.pintarDatos(ArrayList);
 
+    
+    public ArrayList<String> getAirplaneIDs() {
+         
+        return suitcasesID;
+
+    }
 }
