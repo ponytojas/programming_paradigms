@@ -117,9 +117,4 @@ public class Log {
             this.semaphore.release();
         }
     }
-
-    public void deleteLockFile(){
-        File file = new File(this.currentDirectory + "/airport.log.lock");
-        file.delete();
-    }
 }
