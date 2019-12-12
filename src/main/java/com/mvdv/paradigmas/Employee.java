@@ -77,13 +77,4 @@ public class Employee extends Thread {
         }
     }
 
-    public void pause() {
-        try {
-            System.out.println("Entrando en la pausa");
-            wait();
-            System.out.println("Saliendo de la pausa");
-        } catch (InterruptedException e) {
-        }
-    }
-
 }
