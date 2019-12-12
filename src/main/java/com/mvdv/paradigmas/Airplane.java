@@ -17,12 +17,12 @@ public class Airplane {
     private Lock airplaneLock = new ReentrantLock();
 
     private ArrayList<Suitcase> airplaneContent;
-    private ArrayList<String> suitcasesID;
+    private ArrayList<String> suitcasesIDAirplane;
     
     
     public Airplane() {
         this.airplaneContent = new ArrayList<>();
-        this.suitcasesID = new ArrayList<>();            
+        this.suitcasesIDAirplane = new ArrayList<>();            
 
     }
 
@@ -31,7 +31,7 @@ public class Airplane {
         try {
             this.airplaneLock.lock();
             this.airplaneContent.add(newSuitcase);
-            this.suitcasesID.add(newSuitcase.getSuitcaseID());
+            this.suitcasesIDAirplane.add(newSuitcase.getSuitcaseID());
             
         } finally {
             this.airplaneLock.unlock();
@@ -41,7 +41,7 @@ public class Airplane {
     
     public ArrayList<String> getAirplaneIDs() {
          
-        return suitcasesID;
+        return suitcasesIDAirplane;
 
     }
 }
