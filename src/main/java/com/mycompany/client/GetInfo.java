@@ -22,7 +22,7 @@ public class GetInfo extends UnicastRemoteObject implements Interface {
     public GetInfo() throws RemoteException{}
     
     
-    public ArrayList<Suitcase> getAirplaneContent(Airplane airplane) throws RemoteException{
+    public ArrayList<String> getAirplaneContent(Airplane airplane) throws RemoteException{
         this.airplaneContent = airplane.getAirplaneContent();
         return airplaneContent;
     }

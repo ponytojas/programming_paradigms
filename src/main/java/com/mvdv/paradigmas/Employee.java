@@ -36,6 +36,8 @@ public class Employee extends Thread {
                 this.stopper.checkEmployee(this.id);
                 this.suitcases.add(this.suitcaseConveyor.getSuitcase());
                 String textForLog = "The employee " + this.id + " has get a suitcase";
+                
+                //writer.write(textForLog, 2);
                 System.out.println(textForLog);
                 this.log.writeToTheLog(textForLog, "Info");
                 try {
@@ -49,6 +51,7 @@ public class Employee extends Thread {
                 this.airplane.setSuitcase(this.suitcases.remove(0));
                 String textForOtherLog = "The employee " + this.id + " has deposit a suitcase";
                 System.out.println(textForOtherLog);
+                //writer.write(textForLog, 1);
                 this.log.writeToTheLog(textForOtherLog, "Info");
 
                 try {

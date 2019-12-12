@@ -31,5 +31,16 @@ public class Airplane {
             this.airplaneLock.unlock();
         }
     }
+    //Cambiar para que en vez de un array de maletas nos pase de ese array a otro de strings.
+    //public ArrayList<Suitcase> getAirplaneContent() {
+        //return airplaneContent;
+    //}
+    //public ArrayList<String> getAirplaneContent() {
+        //Aqui sacamos el ID de las maletas
+        
+       // return airplaneContent;
+    //}
+    
+    cliente.pintarDatos(ArrayList);
 
 }

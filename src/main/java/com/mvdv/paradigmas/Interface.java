@@ -1,7 +1,13 @@
 package com.mvdv.paradigmas;
 
+import com.mycompany.client.GetInfo;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -457,7 +463,7 @@ public class Interface extends javax.swing.JFrame {
      * @throws java.lang.InterruptedException
      * @throws java.lang.reflect.InvocationTargetException
      */
-    public static void main(String[] args) throws InterruptedException, InvocationTargetException {
+    public static void main(String[] args) throws InterruptedException, InvocationTargetException, RemoteException, MalformedURLException {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -479,6 +485,18 @@ public class Interface extends javax.swing.JFrame {
                 Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
+        
+        GetInfo objGetInfo = new GetInfo();
+        Registry registry = LocateRegistry.createRegistry(1099);
+        
+        Naming.rebind("//127.0.0.1/objGetInfo", objGetInfo);
+        System.out.println("Objeto ha sido encontrado");
+        
+                
+                
+        
+        
+        
     }
     
     private int getFirtsEmptyPosition(){
