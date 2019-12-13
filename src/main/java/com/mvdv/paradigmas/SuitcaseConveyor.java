@@ -48,6 +48,7 @@ public class SuitcaseConveyor {
 
             toReturnSuitcase = this.conveySuitcase.remove(0);
             this.suitcasesIDConveyor.remove(0);
+            this.suitcasesIDConveyor.remove(0);
             this.full.signal();
 
         } finally {

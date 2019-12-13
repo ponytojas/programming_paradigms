@@ -21,7 +21,7 @@ public class Client extends Thread {
         
             Interface objGetInfo = (Interface) Naming.lookup("//127.0.0.1/objGetInfo");
          
-            //Aqui le pido al servidor que me vaya haciendo:
+            
             
             ArrayList<String> arrayAirplane = objGetInfo.getAirplaneIDs();
             ArrayList<String> arrayConveyor = objGetInfo.getConveyorIDs();
@@ -42,6 +42,7 @@ public class Client extends Thread {
     }
         
     }  
+        //NO SE PORQUE NO VA ESTO:
         //private void soutAirplane(ArrayList<String> arrayAirplane){
             //for(int i= 0; i<arrayAirplane.size(); i++){
               //System.out.println(arrayAirplane.get(i));
