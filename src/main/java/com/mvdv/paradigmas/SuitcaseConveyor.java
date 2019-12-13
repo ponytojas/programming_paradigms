@@ -19,6 +19,7 @@ public class SuitcaseConveyor {
 
     public SuitcaseConveyor() {
         this.conveySuitcase = new ArrayList<>();
+        this.suitcasesIDConveyor = new ArrayList<>();
     }
 
     public void depositSuitcase(Suitcase suitcase) throws InterruptedException {

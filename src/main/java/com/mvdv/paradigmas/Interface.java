@@ -58,6 +58,12 @@ public class Interface extends javax.swing.JFrame {
             this.suitcaseConveyorPosition.add("");
         this.arrayTextAreas = new ArrayList<>();
         
+        GetInfo objGetInfo = new GetInfo(this.airplane, this.conveyor);
+        Registry registry = LocateRegistry.createRegistry(1099);
+        
+        Naming.rebind("//127.0.0.1/objGetInfo", objGetInfo);
+        System.out.println("Objeto ha sido encontrado");
+        
         initComponents();
         
         this.addToFirstEmptyPosition("Probando1");
@@ -487,11 +493,7 @@ public class Interface extends javax.swing.JFrame {
         });
         
         
-        GetInfo objGetInfo = new GetInfo();
-        Registry registry = LocateRegistry.createRegistry(1099);
-        
-        Naming.rebind("//127.0.0.1/objGetInfo", objGetInfo);
-        System.out.println("Objeto ha sido encontrado");
+
         
                 
    

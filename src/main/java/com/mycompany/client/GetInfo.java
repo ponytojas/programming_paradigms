@@ -21,17 +21,22 @@ public class GetInfo extends UnicastRemoteObject implements Interface {
     
     private ArrayList<String> suitcasesIDConveyor;
     private ArrayList<String> suitcasesIDAirplane;
+    private Airplane airplane;
+    private SuitcaseConveyor suitcaseConveyor;
     
-    public GetInfo() throws RemoteException{}
+    public GetInfo(Airplane airplane, SuitcaseConveyor suitcaseConveyor) throws RemoteException{
+        this.airplane = airplane;
+        this.suitcaseConveyor = suitcaseConveyor;
+    }
     
     
     public ArrayList<String> getAirplaneIDs() throws RemoteException{
-        this.suitcasesIDAirplane = Airplane.getAirplaneIDs();
+        this.suitcasesIDAirplane = this.airplane.getAirplaneIDs();
         return suitcasesIDAirplane;
     }
     
     public ArrayList<String> getConveyorIDs() throws RemoteException{
-        this.suitcasesIDConveyor = SuitcaseConveyor.getConveyorIDs();
+        this.suitcasesIDConveyor = suitcaseConveyor.getConveyorIDs();
         return suitcasesIDConveyor;
     }
     

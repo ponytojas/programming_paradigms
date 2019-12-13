@@ -4,9 +4,7 @@
  * and open the template in the editor.
  */
 package com.mycompany.client;
-import com.mvdv.paradigmas.Airplane;
 import java.rmi.Naming;
-import com.mvdv.paradigmas.Suitcase;
 import java.util.ArrayList;
 
 
@@ -17,6 +15,7 @@ import java.util.ArrayList;
 public class Client extends Thread {
         
     public static void main(String[] args){
+        while (true){
         try{
             
         
@@ -26,17 +25,28 @@ public class Client extends Thread {
             
             ArrayList<String> arrayAirplane = objGetInfo.getAirplaneIDs();
             ArrayList<String> arrayConveyor = objGetInfo.getConveyorIDs();
-            
+            //this.soutAirplane(arrayAirplane);
+            for(int i= 0; i<arrayAirplane.size(); i++){
+              System.out.println(arrayAirplane.get(i));
+            }
           
+          }
            // Aqui codigo de la interfaz
             
             
 
-        } 
+        
         catch (Exception e){
             System.out.println("Error" + e.getMessage());
         }
     }
+        
+    }  
+        //private void soutAirplane(ArrayList<String> arrayAirplane){
+            //for(int i= 0; i<arrayAirplane.size(); i++){
+              //System.out.println(arrayAirplane.get(i));
+        //}
+    }
+//}
     
     
-}
