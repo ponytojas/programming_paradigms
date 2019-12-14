@@ -5,6 +5,11 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ *
+ * @author Marcos Vicente && Daniel Villalobos
+ */
+
 public class Stopper {
     private Boolean globalStop;
     private Lock lockGlobal = new ReentrantLock();

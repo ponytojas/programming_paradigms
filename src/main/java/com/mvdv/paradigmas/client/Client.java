@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mvdv.paradigmas.client;
 
 import java.net.MalformedURLException;
@@ -13,14 +8,14 @@ import java.util.ArrayList;
 
 /**
  *
- * @author marks
+ * @author Marcos Vicente && Daniel Villalobos
  */
 public class Client extends Thread {
 
     public static void main(String[] args) {
 
         ArrayList<String> arrayAirplane = new ArrayList<>();
-        ArrayList<String> arrayConveyor = new ArrayList<>();
+        //ArrayList<String> arrayConveyor = new ArrayList<>();
         Interface objGetInfo = null;
 
         while (true) {
@@ -31,7 +26,7 @@ public class Client extends Thread {
             }
             try {
                 ArrayList<String> tempAirplane = objGetInfo.getAirplaneIDs();
-                ArrayList<String> tempConveyor = objGetInfo.getConveyorIDs();
+                //ArrayList<String> tempConveyor = objGetInfo.getConveyorIDs();
 
                 if (!arrayAirplane.equals(tempAirplane)) {
                     System.out.println("Ha cambiado en este contenido: ");

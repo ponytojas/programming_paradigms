@@ -1,6 +1,8 @@
 package com.mvdv.paradigmas;
 
 import com.mvdv.paradigmas.client.GetInfo;
+
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
@@ -20,7 +22,7 @@ import javax.swing.WindowConstants;
 
 /**
  *
- * @author ponytojas
+ * @author Marcos Vicente && Daniel Villalobos
  */
 public class Interface extends javax.swing.JFrame {
 
@@ -505,10 +507,6 @@ public class Interface extends javax.swing.JFrame {
                 | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Interface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        // </editor-fold>
-
-        // </editor-fold>
-
         java.awt.EventQueue.invokeLater(() -> {
             try {
                 new Interface().setVisible(true);
@@ -516,13 +514,6 @@ public class Interface extends javax.swing.JFrame {
                 Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-        
-        
-
-        
-                
-   
-        
     }
 
     private int getFirtsEmptyPosition() {
