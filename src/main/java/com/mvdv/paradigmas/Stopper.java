@@ -30,14 +30,14 @@ public class Stopper {
 
     public void checkEmployee(int employeeID){
         try{
-            this.employeesLock.get(employeeID).lock();
-            while(employeeStop.get(employeeID)){
+            this.employeesLock.get(employeeID - 1).lock();
+            while(employeeStop.get(employeeID - 1)){
                 try{
-                    this.stopEmployees.get(employeeID).await();
+                    this.stopEmployees.get(employeeID - 1).await();
                 }catch(InterruptedException e){}
             }
         }finally{
-            this.employeesLock.get(employeeID).unlock();;
+            this.employeesLock.get(employeeID - 1).unlock();
         }
     }
 
@@ -55,20 +55,34 @@ public class Stopper {
     }
 
     public void setEmployeeLock(int employeeID){
-        this.employeeStop.set(employeeID, !this.employeeStop.get(employeeID));
-        if(!this.employeeStop.get(employeeID))
-            this.sendEmployeeSignal(employeeID);
+        if(!this.globalStop){
+            this.employeeStop.set(employeeID, !this.employeeStop.get(employeeID));
+            if(!this.employeeStop.get(employeeID))
+                this.sendEmployeeSignal(employeeID + 1);
+        }
     }
 
     public void setGlobalLock(){
         this.globalStop = !this.globalStop;
+        if(!this.globalStop)
+            this.sendGlobalSignal();
     }
 
     public void sendEmployeeSignal(int employeeID){
-        this.stopEmployees.get(employeeID).signal();
+        try{
+            this.employeesLock.get(employeeID - 1).lock();
+            this.stopEmployees.get(employeeID - 1).signal();
+        }finally{
+            this.employeesLock.get(employeeID - 1).unlock();
+        }
     }
 
     public void sendGlobalSignal(){
-        this.stopGlobal.signalAll();
+        try{
+            this.lockGlobal.lock();
+            this.stopGlobal.signalAll();
+        }finally{
+            this.lockGlobal.unlock();
+        }
     }
 }

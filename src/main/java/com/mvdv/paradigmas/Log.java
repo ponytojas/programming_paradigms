@@ -65,7 +65,11 @@ public class Log {
     private void createFile(boolean isLock) {
         if (isLock) {
             try {
+                File fileLog = new File(this.currentDirectory + "/airport.log");
+                fileLog.delete();
+                File newFileLog = new File(this.currentDirectory + "/airport.log");
                 File file = new File(this.currentDirectory + "/airport.log.lock");
+                newFileLog.createNewFile();
                 file.createNewFile();
             } catch (Exception e) {
                 e.printStackTrace();
