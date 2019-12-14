@@ -7,38 +7,23 @@ package com.mvdv.paradigmas.client;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-import javax.swing.JButton;
-import javax.swing.JTextArea;
-import java.net.MalformedURLException;
-import java.rmi.Naming;
-import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
 import java.util.ArrayList;
+import javax.swing.WindowConstants;
+
 
 /**
  *
  * @author Marcos Vicente && Daniel Villalobos
  */
 public class ClientInterface extends javax.swing.JFrame {
-
-    private String airplaneText = "";
-    private String conveyorText = "";
-    private ArrayList<String> airplaneArrayContent;
-    private ArrayList<String> conveyorArrayContent;
-
     private int counter = 0;
 
     public ClientInterface() {
 
         Connection connection = new Connection(this);
 
-        this.setDefaultCloseOperation(this.DO_NOTHING_ON_CLOSE);
+        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         this.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent we) {
                 System.out.println("Probando");
@@ -82,7 +67,6 @@ public class ClientInterface extends javax.swing.JFrame {
         this.suitcaseContent.setText(textToSet);
     }
 
-    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
     // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -137,7 +121,7 @@ public class ClientInterface extends javax.swing.JFrame {
         suitcaseContent.setColumns(20);
         suitcaseContent.setFont(new java.awt.Font("Open Sans", 0, 20)); // NOI18N
         suitcaseContent.setForeground(new java.awt.Color(72, 72, 85));
-        suitcaseContent.setRows(30);
+        suitcaseContent.setRows(2);
         suitcaseContent.setBorder(null);
         suitcaseContent.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         suitcaseContent.setDisabledTextColor(new java.awt.Color(72, 72, 85));

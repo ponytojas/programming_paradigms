@@ -5,7 +5,7 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
+
 
 public class Connection extends Thread {
     private ArrayList <String> airplaneContent;
