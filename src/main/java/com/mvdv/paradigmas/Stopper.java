@@ -75,7 +75,6 @@ public class Stopper {
         }finally{
             this.employeesLock.get(employeeID - 1).unlock();
         }
-        
     }
 
     public void sendGlobalSignal(){

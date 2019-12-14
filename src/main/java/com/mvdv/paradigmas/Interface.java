@@ -41,7 +41,7 @@ public class Interface extends javax.swing.JFrame {
     private final Airplane airplane;
     private final SuitcaseConveyor conveyor = new SuitcaseConveyor(this);
     private final Stopper stopper = new Stopper();
-    private final Log logForDeleteFile;
+
 
     public Interface() throws IOException, InterruptedException {
 
@@ -60,7 +60,6 @@ public class Interface extends javax.swing.JFrame {
         
         this.airplane = new Airplane(this);
         final Log log = new Log();
-        this.logForDeleteFile = log;
 
         this.employeesButtons = new ArrayList<>();
         this.passengers = new ArrayList <>();
@@ -476,11 +475,6 @@ public class Interface extends javax.swing.JFrame {
         this.areEmployeesRunning.set(1, this.globalRunning);
         this.changeGlobalText();
         this.changeEmployeeText(-1);
-    }
-
-    private void formWindowClosed(final java.awt.event.WindowEvent evt) {   
-        System.out.println("AQUI");
-        this.logForDeleteFile.deleteLockFile();
     }
 
     /**
