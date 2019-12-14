@@ -3,6 +3,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - Client",
+            "request": "launch",
+            "mainClass": "com.mvdv.paradigmas.client.Client",
+            "projectName": "Airport"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Interface",
             "request": "launch",
             "mainClass": "com.mvdv.paradigmas.Interface",
