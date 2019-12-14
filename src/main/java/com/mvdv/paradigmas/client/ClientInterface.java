@@ -51,20 +51,21 @@ public class ClientInterface extends javax.swing.JFrame {
         connection.start();
     }
 
-    public void updateAirplaneContentText(ArrayList<String> text){
-        String textForPanel = "";
+    public void updateAirplaneContentText(ArrayList<String> text) {
+        String textToSet = "";
 
-        for(String suitcaseText: text){
-            textForPanel += suitcaseText;
-            if(this.counter != 0 && this.counter % 5 == 0){
-                textForPanel += "\n";
+        for (String suitcase : text) {
+            if (this.counter % 5 == 0 && this.counter != 0) {
+                textToSet += "\n";
                 this.counter = 0;
             }
-            this.counter += 1;
-        }
-        this.airplaneContent.setText(textForPanel);
-    }
+            textToSet += (this.counter == 0) ? suitcase : "\t" + suitcase;
 
+            this.counter += 1;
+
+        }
+        this.airplaneContent.append(textToSet);
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
@@ -201,24 +202,6 @@ public class ClientInterface extends javax.swing.JFrame {
         });
     }
 
-    public void addContentToAirplane(String id) {
-
-        if (this.counter % 5 == 0 && this.counter != 0) {
-            this.airplaneText += "\n";
-            this.counter = 0;
-        }
-
-        if (this.counter == 0)
-            this.airplaneText += id;
-        else
-            this.airplaneText += "\t" + id;
-
-        this.counter += 1;
-
-        this.airplaneContent.setText(this.airplaneText);
-    }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea airplaneContent;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
@@ -228,5 +211,4 @@ public class ClientInterface extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTextArea jTextArea4;
     private javax.swing.JTextArea suitcaseContent;
-    // End of variables declaration//GEN-END:variables
 }

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class Connection extends Thread {
     private ArrayList <String> airplaneContent;
-    private ArrayList <String> conveyorConten;
+    private ArrayList <String> conveyorContent;
     private ClientInterface clientInterface;
 
     public Connection(ClientInterface clientInterface){
@@ -30,14 +30,14 @@ public class Connection extends Thread {
             if (objGetInfo != null) {
                 try {
                     ArrayList<String> tempAirplane = objGetInfo.getAirplaneIDs();
-                    // ArrayList<String> tempConveyor = objGetInfo.getConveyorIDs();
+                    ArrayList<String> tempConveyor = objGetInfo.getConveyorIDs();
 
                     if (!airplaneContent.equals(tempAirplane)) {
                         System.out.println("Content changed");
                         tempAirplane.removeAll(airplaneContent);
                         airplaneContent.addAll(tempAirplane);
                         
-                       this.clientInterface.updateAirplaneContentText(airplaneContent);
+                       this.clientInterface.updateAirplaneContentText(tempAirplane);
 
                         tempAirplane = null;
 
