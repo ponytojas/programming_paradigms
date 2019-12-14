@@ -22,6 +22,13 @@ public class Airplane {
     public Airplane(Interface gui) {
         this.airplaneContent = new ArrayList<>();
         this.gui = gui;
+    private ArrayList<String> suitcasesIDAirplane;
+    
+    
+    public Airplane() {
+        this.airplaneContent = new ArrayList<>();
+        this.suitcasesIDAirplane = new ArrayList<>();            
+
     }
 
     public void setSuitcase(Suitcase newSuitcase) {
@@ -35,4 +42,10 @@ public class Airplane {
         }
     }
 
+    
+    public ArrayList<String> getAirplaneIDs() {
+         
+        return suitcasesIDAirplane;
+
+    }
 }

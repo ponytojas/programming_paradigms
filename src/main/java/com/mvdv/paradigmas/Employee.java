@@ -42,7 +42,8 @@ public class Employee extends Thread {
                 this.gui.updateEmployeeText(this.id, true, this.suitcases.get(0).getSuitcaseID());
                 this.gui.updateEmployeeGoBack(this.id, true);
                 String textForLog = "The employee " + this.id + " has get a suitcase";
-                System.out.println(textForLog);
+                
+                //System.out.println(textForLog);
                 this.log.writeToTheLog(textForLog, "Info");
                 try {
                     Thread.sleep((int) (Math.random() * ((700 - 400) + 1)) + 400);
@@ -60,7 +61,7 @@ public class Employee extends Thread {
                 this.gui.updateEmployeeGoBack(this.id, false);
                 this.gui.updateEmployeeText(this.id, false, "");
                 String textForOtherLog = "The employee " + this.id + " has deposit a suitcase";
-                System.out.println(textForOtherLog);
+                //System.out.println(textForOtherLog);
                 this.log.writeToTheLog(textForOtherLog, "Info");
 
                 try {

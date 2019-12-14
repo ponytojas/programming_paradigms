@@ -12,6 +12,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class SuitcaseConveyor {
     private ArrayList<Suitcase> conveySuitcase;
+    private ArrayList<String> suitcasesIDConveyor;
     private Lock lock = new ReentrantLock();
     private Condition full = lock.newCondition();
     private Condition empty = lock.newCondition();
@@ -19,6 +20,7 @@ public class SuitcaseConveyor {
 
     public SuitcaseConveyor(Interface gui) {
         this.conveySuitcase = new ArrayList<>();
+        this.suitcasesIDConveyor = new ArrayList<>();
         this.gui = gui;
     }
 
@@ -29,6 +31,8 @@ public class SuitcaseConveyor {
                 full.await();
             }
             this.conveySuitcase.add(suitcase);
+            this.suitcasesIDConveyor.add(suitcase.getSuitcaseID());
+            
             this.gui.addToFirstEmptyPosition(suitcase.getSuitcaseID());
             empty.signal();
         } finally {
@@ -61,6 +65,13 @@ public class SuitcaseConveyor {
 
     public boolean isConveyorEmpty() {
         return this.conveySuitcase.isEmpty();
+    }
+    
+    
+    public ArrayList<String> getConveyorIDs() {
+         
+        return suitcasesIDConveyor;
+
     }
 
 }

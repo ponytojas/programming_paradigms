@@ -39,7 +39,8 @@ public class Passenger extends Thread {
             try {
                 this.suitcaseConveyor.depositSuitcase(this.passengerSuitcases.remove(0));
                 String textForLog = "The passenger " + this.passengerID + " has deposit the suitcase";
-                System.out.println(textForLog);
+                //writer.write(textForLog, 1);    IMPORTANTE
+                //System.out.println(textForLog);
                 this.log.writeToTheLog(textForLog, "Info");
             } catch (InterruptedException ex) {
                 String textForError = "There was an error: \n" + ex;
