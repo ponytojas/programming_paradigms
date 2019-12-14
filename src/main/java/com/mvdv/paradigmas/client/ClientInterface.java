@@ -20,19 +20,8 @@ public class ClientInterface extends javax.swing.JFrame {
     private int counter = 0;
 
     public ClientInterface() {
-
         Connection connection = new Connection(this);
-
-        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-        this.addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent we) {
-                System.out.println("Probando");
-                System.exit(0);
-            }
-        });
-
         initComponents();
-
         connection.start();
     }
 
