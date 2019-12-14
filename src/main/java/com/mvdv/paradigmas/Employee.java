@@ -27,7 +27,7 @@ public class Employee extends Thread {
     }
 
     @Override
-    public synchronized void run() {
+    public void run() {
         while (true) {
             try {
                 this.stopper.checkGlobal();
