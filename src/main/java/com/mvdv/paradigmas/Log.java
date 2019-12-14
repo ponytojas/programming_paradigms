@@ -28,7 +28,7 @@ public class Log {
         else {
             File tmpDir = new File(this.currentDirectory + "/airport.log.lock");
             boolean exists = tmpDir.exists();
-            System.out.println("En el directorio " + currentDirectory + ", there's an airport.lock: " + exists);
+            System.out.println("In directory " + currentDirectory + ", there's an airport.lock: " + exists);
             if (!exists)
                 this.createFile(true);
             else {
