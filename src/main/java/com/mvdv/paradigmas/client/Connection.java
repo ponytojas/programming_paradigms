@@ -20,6 +20,7 @@ public class Connection extends Thread {
     public void run() {
         Interface objGetInfo = null;
         airplaneContent = new ArrayList<>();
+        conveyorContent = new ArrayList<>();
 
         while (true) {
             try {
@@ -44,6 +45,18 @@ public class Connection extends Thread {
                     } else {
                         System.out.println("There's no change");
                     }
+                    if (!conveyorContent.equals(tempConveyor)) {
+                        System.out.println("Content changed");
+                        conveyorContent = tempConveyor;
+                    
+                       this.clientInterface.updateConveyorContentText(conveyorContent);
+
+                       tempConveyor = null;
+
+                    } else {
+                        System.out.println("There's no change");
+                    }
+
                 } catch (Exception e) {
                     System.out.println("Error" + e.getMessage());
                 }

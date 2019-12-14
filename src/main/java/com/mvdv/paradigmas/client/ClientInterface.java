@@ -67,6 +67,21 @@ public class ClientInterface extends javax.swing.JFrame {
         this.airplaneContent.append(textToSet);
     }
 
+    public void updateConveyorContentText(ArrayList<String> text){
+        String textToSet = "";
+        int conveyorCounter = 0;
+
+        for (String suitcase: text){
+            if (conveyorCounter % 4 == 0 && conveyorCounter != 0){
+                textToSet += "\n";
+                conveyorCounter = 0;
+            }
+            textToSet += (conveyorCounter == 0) ? suitcase : "\t" + suitcase;
+            conveyorCounter += 1;
+        }
+        this.suitcaseContent.setText(textToSet);
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
     // Code">//GEN-BEGIN:initComponents
